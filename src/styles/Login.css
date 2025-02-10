@@ -1,0 +1,217 @@
+/* 기본 리셋 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 모바일 우선 스타일 */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #ffffff;
+  padding: 16px;
+  width: 100%;
+}
+
+.login-box {
+  background: white;
+  padding: 24px 16px;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.login-title {
+  text-align: center;
+  color: #333;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  letter-spacing: -0.5px;
+}
+
+.login-subtitle {
+  text-align: center;
+  color: #666;
+  font-size: 15px;
+  margin-bottom: 32px;
+  letter-spacing: -0.3px;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #333;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  font-size: 16px;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #f8f8f8;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #4a90e2;
+  background-color: #fff;
+}
+
+/* iOS 스타일 입력 필드 최적화 */
+.input-group input[type="email"],
+.input-group input[type="password"] {
+  padding: 15px;
+  font-size: 16px; /* iOS에서 자동 확대 방지 */
+}
+
+.login-button {
+  width: 100%;
+  padding: 16px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  -webkit-tap-highlight-color: transparent;
+  margin-top: 8px;
+}
+
+/* 터치 디바이스를 위한 활성 상태 스타일 */
+.login-button:active {
+  background-color: #357abd;
+  transform: scale(0.98);
+}
+
+.login-footer {
+  margin-top: 28px;
+  text-align: center;
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+.login-footer a {
+  color: #666;
+  text-decoration: none;
+  padding: 8px 4px;
+}
+
+.divider {
+  color: #ddd;
+}
+
+/* 소셜 로그인 스타일 */
+.social-login {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid #eee;
+}
+
+.divider-text {
+  position: relative;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.divider-text span {
+  background-color: #fff;
+  padding: 0 10px;
+  color: #666;
+  font-size: 14px;
+}
+
+.google-login-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+/* 안전 영역 고려 (iPhone X 이상) */
+@supports (padding: max(0px)) {
+  .login-container {
+    padding: max(16px, env(safe-area-inset-top))
+             max(16px, env(safe-area-inset-right))
+             max(16px, env(safe-area-inset-bottom))
+             max(16px, env(safe-area-inset-left));
+  }
+}
+
+/* 태블릿 이상 디바이스 */
+@media screen and (min-width: 768px) {
+  .login-box {
+    max-width: 400px;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .login-button:hover {
+    background-color: #357abd;
+  }
+}
+
+/* 다크 모드 지원 */
+@media (prefers-color-scheme: dark) {
+  .login-container {
+    background-color: #1a1a1a;
+  }
+  
+  .login-box {
+    background-color: #2a2a2a;
+  }
+  
+  .login-title {
+    color: #ffffff;
+  }
+  
+  .login-subtitle {
+    color: #b0b0b0;
+  }
+  
+  .input-group label {
+    color: #ffffff;
+  }
+  
+  .input-group input {
+    background-color: #333333;
+    border-color: #404040;
+    color: #ffffff;
+  }
+  
+  .input-group input:focus {
+    border-color: #4a90e2;
+    background-color: #404040;
+  }
+  
+  .login-footer a {
+    color: #b0b0b0;
+  }
+
+  .social-login {
+    border-top-color: #404040;
+  }
+
+  .divider-text span {
+    background-color: #2a2a2a;
+    color: #b0b0b0;
+  }
+} 
