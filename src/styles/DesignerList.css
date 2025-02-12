@@ -1,9 +1,12 @@
 .designer-container {
+  display: flex;
+  flex-direction: column;
   padding: 24px;
   max-width: 800px;
   margin: 0 auto;
   min-height: 100vh;
   background-color: #f8f9fa;
+  height: 100vh;
 }
 
 .designer-title {
@@ -15,9 +18,8 @@
 }
 
 .designer-list {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  flex: 1;
+  overflow-y: auto;
 }
 
 .designer-card {
@@ -54,7 +56,8 @@
   text-align: center;
 }
 
-.experience, .specialty {
+.experience,
+.specialty {
   color: #666;
   font-size: 14px;
   margin-bottom: 4px;
@@ -152,7 +155,8 @@
     color: #ffffff;
   }
 
-  .experience, .specialty {
+  .experience,
+  .specialty {
     color: #b0b0b0;
   }
 
@@ -186,4 +190,28 @@
   .price {
     text-align: left;
   }
-} 
+}
+
+/* 폰 크기(393x852)에 맞춘 스타일 */
+@media (max-width: 393px) {
+  .designer-container {
+    padding: 16px;
+  }
+
+  .designer-card {
+    padding: 16px;
+  }
+
+  .designer-info h2 {
+    font-size: 18px;
+  }
+
+  .description {
+    font-size: 14px;
+  }
+
+  .select-designer-button {
+    padding: 10px;
+    font-size: 14px;
+  }
+}

@@ -1,10 +1,11 @@
-import { useNavigate, useParams } from 'react-router-dom';
-import '../styles/DesignerList.css';
+import { useNavigate, useParams } from "react-router-dom";
+import Footer from "../components/Footer";
+import "../styles/DesignerList.css";
 
 function DesignerList() {
   const navigate = useNavigate();
   const { type } = useParams();
-  
+
   const designers = [
     {
       id: 1,
@@ -17,7 +18,7 @@ function DesignerList() {
       description: "레드벨벳, 있지가 방문하는 샵",
       image: "https://via.placeholder.com/150",
       rating: 4.9,
-      reviewCount: 156
+      reviewCount: 156,
     },
     {
       id: 2,
@@ -30,7 +31,7 @@ function DesignerList() {
       description: "화이트 베이지 브라운 전문",
       image: "https://via.placeholder.com/150",
       rating: 4.8,
-      reviewCount: 142
+      reviewCount: 142,
     },
     {
       id: 3,
@@ -43,7 +44,7 @@ function DesignerList() {
       description: "차별화 된 탈색 & 염색 노하우 기법, 꼼꼼한 컨설팅",
       image: "https://via.placeholder.com/150",
       rating: 5.0,
-      reviewCount: 189
+      reviewCount: 189,
     },
     {
       id: 4,
@@ -56,7 +57,7 @@ function DesignerList() {
       description: "Customized only for you!",
       image: "https://via.placeholder.com/150",
       rating: 4.9,
-      reviewCount: 167
+      reviewCount: 167,
     },
     {
       id: 5,
@@ -69,7 +70,7 @@ function DesignerList() {
       description: "퍼스널 맞춤형 컬러 추천",
       image: "https://via.placeholder.com/150",
       rating: 4.7,
-      reviewCount: 98
+      reviewCount: 98,
     },
     {
       id: 6,
@@ -82,7 +83,7 @@ function DesignerList() {
       description: "편안한 분위기와 부드러운 디자인",
       image: "https://via.placeholder.com/150",
       rating: 4.8,
-      reviewCount: 145
+      reviewCount: 145,
     },
     {
       id: 7,
@@ -95,7 +96,7 @@ function DesignerList() {
       description: "얼굴형 고민을 기쁨으로 바꿔드려요",
       image: "https://via.placeholder.com/150",
       rating: 4.9,
-      reviewCount: 178
+      reviewCount: 178,
     },
     {
       id: 8,
@@ -108,7 +109,7 @@ function DesignerList() {
       description: "편안한 분위기, 1:1 맞춤 상담 디자인",
       image: "https://via.placeholder.com/150",
       rating: 4.8,
-      reviewCount: 134
+      reviewCount: 134,
     },
     {
       id: 9,
@@ -121,7 +122,7 @@ function DesignerList() {
       description: "작은 차이로 달라지는 나만의 특별한 분위기",
       image: "https://via.placeholder.com/150",
       rating: 4.7,
-      reviewCount: 112
+      reviewCount: 112,
     },
     {
       id: 10,
@@ -134,7 +135,7 @@ function DesignerList() {
       description: "가치를 높여주는 이상적인 스타일을 찾아드려요",
       image: "https://via.placeholder.com/150",
       rating: 5.0,
-      reviewCount: 223
+      reviewCount: 223,
     },
     {
       id: 11,
@@ -147,7 +148,7 @@ function DesignerList() {
       description: "트렌디한 감성, 섬세한 손길로 새로운 모습을",
       image: "https://via.placeholder.com/150",
       rating: 4.8,
-      reviewCount: 156
+      reviewCount: 156,
     },
     {
       id: 12,
@@ -160,7 +161,7 @@ function DesignerList() {
       description: "대한민국 상위 1% 단발머리 전문가",
       image: "https://via.placeholder.com/150",
       rating: 5.0,
-      reviewCount: 245
+      reviewCount: 245,
     },
     {
       id: 13,
@@ -173,7 +174,7 @@ function DesignerList() {
       description: "누구나 손질 가능한 디자인",
       image: "https://via.placeholder.com/150",
       rating: 4.7,
-      reviewCount: 132
+      reviewCount: 132,
     },
     {
       id: 14,
@@ -186,7 +187,7 @@ function DesignerList() {
       description: "일상 속에 스며드는 아름다움, 높은 재방문률",
       image: "https://via.placeholder.com/150",
       rating: 4.9,
-      reviewCount: 187
+      reviewCount: 187,
     },
     {
       id: 15,
@@ -199,7 +200,7 @@ function DesignerList() {
       description: "오로지 당신을 위한 컬러",
       image: "https://via.placeholder.com/150",
       rating: 4.8,
-      reviewCount: 165
+      reviewCount: 165,
     },
     {
       id: 16,
@@ -212,8 +213,8 @@ function DesignerList() {
       description: "끊어짐, 얼룩없는 뿌리탈색, 저손상 블랙빼기 전문",
       image: "https://via.placeholder.com/150",
       rating: 4.9,
-      reviewCount: 198
-    }
+      reviewCount: 198,
+    },
   ];
 
   const handleDesignerSelect = (designerId) => {
@@ -224,37 +225,40 @@ function DesignerList() {
     <div className="designer-container">
       <div className="designer-list">
         {designers
-          .filter(designer => 
-            type === 'offline' 
-              ? designer.type.includes('대면')
-              : designer.type.includes('비대면')
+          .filter((designer) =>
+            type === "offline"
+              ? designer.type.includes("대면")
+              : designer.type.includes("비대면")
           )
           .map((designer) => (
-            <div 
-              key={designer.id} 
+            <div
+              key={designer.id}
               className="designer-card"
               onClick={() => handleDesignerSelect(designer.id)}
             >
-              <img 
-                src={designer.image} 
-                alt={designer.name} 
+              <img
+                src={designer.image}
+                alt={designer.name}
                 className="designer-image"
               />
               <div className="designer-info">
                 <h2>{designer.name}</h2>
                 <p className="area">{designer.area}</p>
-                <p className="specialty">전문분야: {designer.specialty}</p>
+                <p className="specialty">
+                  전문분야: {designer.specialty}
+                </p>
                 <p className="price">
-                  {type === 'offline' 
+                  {type === "offline"
                     ? `대면 상담 ${designer.price.offline.toLocaleString()}원`
-                    : `화상 상담 ${designer.price.online.toLocaleString()}원`
-                  }
+                    : `화상 상담 ${designer.price.online.toLocaleString()}원`}
                 </p>
                 <p className="description">{designer.description}</p>
                 <div className="rating">
                   <span className="stars">★</span>
                   <span>{designer.rating}</span>
-                  <span className="review-count">({designer.reviewCount}개의 리뷰)</span>
+                  <span className="review-count">
+                    ({designer.reviewCount}개의 리뷰)
+                  </span>
                 </div>
               </div>
               <button className="select-designer-button">
@@ -263,8 +267,9 @@ function DesignerList() {
             </div>
           ))}
       </div>
+      <Footer />
     </div>
   );
 }
 
-export default DesignerList; 
+export default DesignerList;
