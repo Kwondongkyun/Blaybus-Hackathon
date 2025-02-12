@@ -1,5 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import Footer from "../components/Footer";
+import designer2second from "./../assets/designer_2second.png";
 import "../styles/DesignerList.css";
 
 function DesignerList() {
@@ -237,7 +238,7 @@ function DesignerList() {
               onClick={() => handleDesignerSelect(designer.id)}
             >
               <img
-                src={designer.image}
+                src={designer2second}
                 alt={designer.name}
                 className="designer-image"
               />

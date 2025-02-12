@@ -12,7 +12,11 @@ const Footer = () => {
         className="footer-button"
         onClick={() => navigate("/main")}
       >
-        <img src={homebtn_red} alt="메인" className="footer-icon" />
+        <img
+          src={homebtn_red}
+          alt="홈 이동"
+          className="footer-icon"
+        />
       </button>
       <button
         className="footer-button"
@@ -20,8 +24,9 @@ const Footer = () => {
       >
         <img
           src={mypagebtn_gray}
-          alt="검색"
+          alt="스타일 고민 수정"
           className="footer-icon"
+          // 블리스 측에서 코딩하는 '스타일 고민'을 수정으로 이동
         />
       </button>
       <button
@@ -30,8 +35,10 @@ const Footer = () => {
       >
         <img
           src={Calendarbtn_gray}
-          alt="캘린더"
+          alt="예약내역조회"
           className="footer-icon"
+          // 예약내역 조회 페이지로 이동
+          // onClick={()=>navigate("/...")}
         />
       </button>
     </div>

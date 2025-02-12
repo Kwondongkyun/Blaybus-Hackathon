@@ -1,25 +1,18 @@
 .designer-container {
   display: flex;
   flex-direction: column;
-  padding: 24px;
+  /* padding: 24px; */
   max-width: 800px;
   margin: 0 auto;
   min-height: 100vh;
-  background-color: #f8f9fa;
+  background-color: palevioletred;
   height: 100vh;
-}
-
-.designer-title {
-  text-align: center;
-  color: #333;
-  font-size: 24px;
-  margin-bottom: 32px;
-  font-weight: 600;
 }
 
 .designer-list {
   flex: 1;
   overflow-y: auto;
+  padding: 10px;
 }
 
 .designer-card {
@@ -28,9 +21,12 @@
   padding: 20px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   cursor: pointer;
   transition: transform 0.2s;
+  margin-bottom: 16px;
+  width: 373px; /* 고정 너비 */
+  height: 208px; /* 고정 높이 */
 }
 
 .designer-card:hover {
@@ -38,8 +34,8 @@
 }
 
 .designer-image {
-  width: 120px;
-  height: 120px;
+  width: 70px;
+  height: 70px;
   border-radius: 60px;
   object-fit: cover;
   margin: 0 auto 16px;
@@ -47,6 +43,7 @@
 
 .designer-info {
   flex: 1;
+  text-align: center;
 }
 
 .designer-info h2 {
@@ -90,86 +87,23 @@
 }
 
 .select-designer-button {
-  background-color: #4a90e2;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 12px;
-  font-size: 16px;
-  font-weight: 500;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #a42d4e;
+  border: 1px solid #a42d4e;
+  border-radius: 48px;
+  /* padding: 16px 19px 16px 20px; */
+  font-size: 10px;
+  font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.2s;
-  width: 100%;
+  transition: background-color 5ms;
+  width: 78px;
+  height: 27px;
 }
 
 .select-designer-button:hover {
   background-color: #357abd;
 }
 
-/* 태블릿 이상 화면 */
-@media (min-width: 768px) {
-  .designer-card {
-    flex-direction: row;
-    align-items: center;
-    gap: 24px;
-    padding: 24px;
-  }
-
-  .designer-image {
-    margin: 0;
-  }
-
-  .designer-info {
-    text-align: left;
-  }
-
-  .designer-info h2,
-  .experience,
-  .specialty,
-  .description,
-  .rating {
-    text-align: left;
-  }
-
-  .select-designer-button {
-    width: auto;
-    padding: 12px 24px;
-  }
-}
-
-/* 다크 모드 */
-@media (prefers-color-scheme: dark) {
-  .designer-container {
-    background-color: #1a1a1a;
-  }
-
-  .designer-title {
-    color: #ffffff;
-  }
-
-  .designer-card {
-    background-color: #2a2a2a;
-  }
-
-  .designer-info h2 {
-    color: #ffffff;
-  }
-
-  .experience,
-  .specialty {
-    color: #b0b0b0;
-  }
-
-  .description {
-    color: #cccccc;
-  }
-
-  .review-count {
-    color: #b0b0b0;
-  }
-}
-
-/* 기존 CSS에 추가 */
 .area {
   color: #666;
   font-size: 14px;
@@ -183,35 +117,4 @@
   font-size: 16px;
   margin: 8px 0;
   text-align: center;
-}
-
-@media (min-width: 768px) {
-  .area,
-  .price {
-    text-align: left;
-  }
-}
-
-/* 폰 크기(393x852)에 맞춘 스타일 */
-@media (max-width: 393px) {
-  .designer-container {
-    padding: 16px;
-  }
-
-  .designer-card {
-    padding: 16px;
-  }
-
-  .designer-info h2 {
-    font-size: 18px;
-  }
-
-  .description {
-    font-size: 14px;
-  }
-
-  .select-designer-button {
-    padding: 10px;
-    font-size: 14px;
-  }
 }
