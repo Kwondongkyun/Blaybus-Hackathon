@@ -238,7 +238,7 @@ function DesignerList() {
               onClick={() => handleDesignerSelect(designer.id)}
             >
               <img
-                src={designer2second}
+                src={designer2second} // designer.image로 바꾸기
                 alt={designer.name}
                 className="designer-image"
               />
