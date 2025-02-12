@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import Footer from "../components/Footer";
 import designer2second from "./../assets/designer_2second.png";
+import location from "./../assets/location.png";
 import "../styles/DesignerList.css";
 
 function DesignerList() {
@@ -244,23 +245,29 @@ function DesignerList() {
               />
               <div className="designer-info">
                 <h2>{designer.name}</h2>
-                <p className="area">{designer.area}</p>
-                <p className="specialty">
-                  전문분야: {designer.specialty}
+                <p className="area">
+                  <img src={location} />
+                  {designer.area}
+                  <span className="specialty">
+                    {` ${designer.specialty}${" "}`}
+                  </span>
                 </p>
-                <p className="price">
+                {/* <p className="specialty">
+                  전문분야: {designer.specialty}
+                </p> */}
+                {/* <p className="price">
                   {type === "offline"
                     ? `대면 상담 ${designer.price.offline.toLocaleString()}원`
                     : `화상 상담 ${designer.price.online.toLocaleString()}원`}
-                </p>
-                <p className="description">{designer.description}</p>
-                <div className="rating">
+                </p> */}
+                <p className="description">{`# ${designer.description}`}</p>
+                {/* <div className="rating">
                   <span className="stars">★</span>
                   <span>{designer.rating}</span>
                   <span className="review-count">
                     ({designer.reviewCount}개의 리뷰)
                   </span>
-                </div>
+                </div> */}
               </div>
               <button className="select-designer-button">
                 예약하기

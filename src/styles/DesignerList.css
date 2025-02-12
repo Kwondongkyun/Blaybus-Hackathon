@@ -48,22 +48,43 @@
 
 .designer-info h2 {
   color: #333;
-  font-size: 20px;
-  margin-bottom: 8px;
+  font-size: 18px;
+  margin-left: 10px;
+  text-align: left;
+}
+
+/* 지역 */
+.area {
+  color: #494949;
+  font-size: 11px;
+  margin-left: 10px;
+  text-align: left;
+}
+
+/* 가격 */
+.price {
+  color: #4a90e2;
+  font-weight: 600;
+  font-size: 16px;
+  margin: 8px 0;
   text-align: center;
 }
 
-.experience,
+/* 특기 */
 .specialty {
-  color: #666;
-  font-size: 14px;
-  margin-bottom: 4px;
+  margin-left: 12px;
+  padding: 1px;
+  background-color: #888ef1;
+  color: #ffffff;
+  border-radius: 48px;
+  border: none;
   text-align: center;
 }
 
+/* 한줄 소개 */
 .description {
   color: #444;
-  font-size: 15px;
+  font-size: 12px;
   line-height: 1.5;
   margin: 12px 0;
   text-align: center;
@@ -102,19 +123,4 @@
 
 .select-designer-button:hover {
   background-color: #357abd;
-}
-
-.area {
-  color: #666;
-  font-size: 14px;
-  margin-bottom: 4px;
-  text-align: center;
-}
-
-.price {
-  color: #4a90e2;
-  font-weight: 600;
-  font-size: 16px;
-  margin: 8px 0;
-  text-align: center;
 }
