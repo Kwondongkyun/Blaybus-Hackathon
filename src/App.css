@@ -7,6 +7,27 @@
 #root {
   width: 100%;
   min-height: 100vh;
+  background: white;
+  position: relative;
+  overflow: hidden;
+}
+
+#root::before {
+  content: '';
+  position: fixed;
+  top: -10%;
+  right: -10%;
+  width: 80%;
+  height: 80%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at center,
+    rgba(228, 120, 139, 0.6) 0%,
+    rgba(255, 244, 246, 0.8) 40%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  z-index: -1;
+  pointer-events: none;
 }
 
 .logo {

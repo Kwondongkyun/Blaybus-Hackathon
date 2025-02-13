@@ -3,7 +3,6 @@
   max-width: 800px;
   margin: 0 auto;
   min-height: 100vh;
-  background-color: #f8f9fa;
 }
 
 .designer-title {
@@ -87,7 +86,7 @@
 }
 
 .select-designer-button {
-  background-color: #4a90e2;
+  background-color: #E35A80;
   color: white;
   border: none;
   border-radius: 8px;
