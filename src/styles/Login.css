@@ -47,6 +47,32 @@ html, body {
   font-weight: 400;
   line-height: 1.5rem;
   margin-top: 1.75rem;
+.login-box {
+  background: white;
+  padding: 24px 16px;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.login-title {
+  align-self: stretch;
+
+  color: var(--font-090-a-0-a, #090A0A);
+  text-align: center;
+  
+  /* Heading/H2_EB */
+  font-family: Pretendard;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+  color: var(--brand-e-35-a-80, #E35A80);
+
+}
+
+.input-group {
+  margin-bottom: 20px;
 }
 
 .google_login_link {

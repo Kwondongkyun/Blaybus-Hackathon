@@ -5,19 +5,50 @@ import '../styles/Login.css';
 
 function Login() {
   return (
-    <div className='main_container'>
-      <img src="https://placehold.co/327x31" />
-      <img src="https://placehold.co/327x327" />
-      <span className='first_state'>
-        당신만을 위한 헤어 컨설팅,
-      </span>
-      <span className='second_state'>
-        오직 헤르츠에서
-      </span>
-      <GoogleLogin />
-      <p className='google_login_state'>구글 계정이 없으신가요?</p>
-      <a className='google_login_link' href="https://www.google.com/intl/ko/account/about/">구글 계정 생성하러 가기</a>
-      <BackgroundCircle />
+    <div className="login-container">
+      <div className="login-box">
+        <h1 className="login-title">haertz</h1>
+        
+        <form onSubmit={handleSubmit} className="login-form">
+          <div className="input-group">
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={loginData.email}
+              onChange={handleChange}
+              placeholder="Email"
+              required
+            />
+          </div>
+          
+          <div className="input-group">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={loginData.password}
+              onChange={handleChange}
+              placeholder="password"
+              required
+            />
+          </div>
+
+          <div className="login-footer">
+          <a href="#" className="forgot-password">Forgot Password?</a>
+          <span className="divider"></span>
+          </div>
+
+          <button type="submit" className="login-button">
+            Log in
+          </button>
+        </form>
+
+
+        
+      </div>
     </div>
   );
 }

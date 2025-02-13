@@ -385,6 +385,10 @@ function BookingPage() {
     setPaymentMethod(method);
   };
 
+  const handlePaymentSelect = (method) => {
+    setPaymentMethod(method);
+  };
+
   const handleShowPayment = () => {
     setShowPaymentModal(true);
   };
@@ -573,6 +577,32 @@ function BookingPage() {
                   </div>
                 )
               )}
+              {paymentMethod === 'account' ? (
+                <>
+                  <div className="confirm-detail-item">
+                    <span>입금 계좌</span>
+                    <span>{COMPANY_ACCOUNT.account}</span>
+                  </div>
+                  <div className="confirm-detail-item">
+                    <span>예금주</span>
+                    <span>{COMPANY_ACCOUNT.accountHolder}</span>
+                  </div>
+                </>
+              ) : (
+                type === 'online' && googleMeetLink && (
+                  <div className="confirm-detail-item">
+                    <span>화상 미팅 링크</span>
+                    <a 
+                      href={googleMeetLink} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="google-meet-link"
+                    >
+                      구글 미팅 참여하기
+                    </a>
+                  </div>
+                )
+              )}
             </div>
             <div className="confirm-actions">
               <button
@@ -608,6 +638,10 @@ function BookingPage() {
                 )
               )}
             </div>
+            <div className="confirm-actions">
+              <button 
+                className="go-to-reservations" 
+                onClick={handleGoToReservations}
             <div className="confirm-actions">
               <button 
                 className="go-to-reservations" 
