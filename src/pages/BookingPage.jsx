@@ -26,6 +26,7 @@ function BookingPage() {
   const [paymentMethod, setPaymentMethod] = useState('');
   const [showPaymentModal, setShowPaymentModal] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [googleMeetLink, setGoogleMeetLink] = useState(null);
 
   // 디자이너 정보 가져오기
   useEffect(() => {
@@ -149,30 +150,44 @@ function BookingPage() {
   };
 
   const handleConfirm = () => {
-    setShowConfirmModal(true);
-    
-    // 3초 후에 예약 목록 페이지로 이동
-    setTimeout(() => {
-      const newReservation = {
-        id: Date.now(),
-        designerId,
-        designerName: designer.name,
-        type,
-        date: selectedDateState.toISOString().split('T')[0],
-        time: selectedTimeState,
-        price: type === 'offline' ? designer.price.offline : designer.price.online,
-        paymentMethod,
-        status: 'pending',
-        location: type === 'offline' ? designer.location : '화상 상담',
-        account: COMPANY_ACCOUNT.account,
-        accountHolder: COMPANY_ACCOUNT.accountHolder
-      };
+    if (!paymentMethod) {
+      alert('결제 방식을 선택해주세요.');
+      return;
+    }
 
-      const existingReservations = JSON.parse(localStorage.getItem('reservations') || '[]');
-      localStorage.setItem('reservations', JSON.stringify([...existingReservations, newReservation]));
-      
-      navigate('/reservations');
-    }, 3000);
+    // 화상 컨설팅일 경우 구글미트 링크 생성
+    const meetLink = type === 'online' ? `https://meet.google.com/haertz-${Date.now()}` : null;
+    setGoogleMeetLink(meetLink);
+
+    // 예약 정보 생성
+    const newReservation = {
+      id: Date.now(),
+      designerId,
+      designerName: designer.name,
+      type,
+      date: selectedDateState.toISOString().split('T')[0],
+      time: selectedTimeState,
+      price: type === 'offline' ? designer.price.offline : designer.price.online,
+      paymentMethod,
+      status: paymentMethod === 'account' ? 'pending' : 'confirmed',
+      location: type === 'offline' ? designer.location : '화상 컨설팅',
+      account: COMPANY_ACCOUNT.account,
+      accountHolder: COMPANY_ACCOUNT.accountHolder,
+      googleMeetLink: meetLink
+    };
+
+    // 로컬 스토리지에 저장
+    const existingReservations = JSON.parse(localStorage.getItem('reservations') || '[]');
+    localStorage.setItem('reservations', JSON.stringify([...existingReservations, newReservation]));
+    
+    // 결제 모달 닫고 확인 모달 표시
+    setShowPaymentModal(false);
+    setShowConfirmModal(true);
+  };
+
+  // 예약 내역 페이지로 이동하는 함수 추가
+  const handleGoToReservations = () => {
+    navigate('/reservations');
   };
 
   const handlePaymentSelect = (method) => {
@@ -195,8 +210,8 @@ function BookingPage() {
           <span>{designer.name}</span>
         </div>
         <div className="info-item">
-          <span>상담 유형</span>
-          <span>{type === 'offline' ? '대면 상담' : '화상 상담'}</span>
+          <span>컨설팅 유형</span>
+          <span>{type === 'offline' ? '대면 컨설팅' : '화상 컨설팅'}</span>
         </div>
         <div className="info-item">
           <span>날짜</span>
@@ -212,7 +227,7 @@ function BookingPage() {
         </div>
         {type === 'offline' && (
           <div className="info-item">
-            <span>위치</span>
+            <span>컨설팅 위치</span>
             <span>{designer.location}</span>
           </div>
         )}
@@ -264,16 +279,24 @@ function BookingPage() {
         <div className="confirm-modal">
           <div className="confirm-content">
             <div className="confirm-icon">✓</div>
-            <h3>예약이 완료되었습니다!</h3>
+            <h3>
+              {paymentMethod === 'account' ? '입금 확인 후 예약이 확정됩니다' : '예약이 완료되었습니다!'}
+            </h3>
             <div className="confirm-details">
               <div className="confirm-detail-item">
                 <span>디자이너</span>
                 <span>{designer.name}</span>
               </div>
               <div className="confirm-detail-item">
-                <span>상담 유형</span>
-                <span>{type === 'offline' ? '대면 상담' : '화상 상담'}</span>
+                <span>컨설팅 유형</span>
+                <span>{type === 'offline' ? '대면 컨설팅' : '화상 컨설팅'}</span>
               </div>
+              {type === 'offline' && (
+                <div className="confirm-detail-item">
+                  <span>컨설팅 위치</span>
+                  <span>{designer.location}</span>
+                </div>
+              )}
               <div className="confirm-detail-item">
                 <span>날짜</span>
                 <span>{selectedDateState.toLocaleDateString()}</span>
@@ -286,8 +309,41 @@ function BookingPage() {
                 <span>결제 금액</span>
                 <span>{(type === 'offline' ? designer.price.offline : designer.price.online).toLocaleString()}원</span>
               </div>
+              {paymentMethod === 'account' ? (
+                <>
+                  <div className="confirm-detail-item">
+                    <span>입금 계좌</span>
+                    <span>{COMPANY_ACCOUNT.account}</span>
+                  </div>
+                  <div className="confirm-detail-item">
+                    <span>예금주</span>
+                    <span>{COMPANY_ACCOUNT.accountHolder}</span>
+                  </div>
+                </>
+              ) : (
+                type === 'online' && googleMeetLink && (
+                  <div className="confirm-detail-item">
+                    <span>화상 미팅 링크</span>
+                    <a 
+                      href={googleMeetLink} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="google-meet-link"
+                    >
+                      구글 미팅 참여하기
+                    </a>
+                  </div>
+                )
+              )}
             </div>
-            <p className="redirect-message">잠시 후 예약 내역 페이지로 이동합니다.</p>
+            <div className="confirm-actions">
+              <button 
+                className="go-to-reservations" 
+                onClick={handleGoToReservations}
+              >
+                예약 내역 확인하기
+              </button>
+            </div>
           </div>
         </div>
       )}

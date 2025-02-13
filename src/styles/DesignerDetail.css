@@ -152,7 +152,7 @@
 .booking-button {
   width: 100%;
   padding: 16px;
-  background-color: #FF6B6B;
+  background-color: #000000;
   color: white;
   border: none;
   border-radius: 8px;
@@ -163,7 +163,7 @@
 }
 
 .booking-button:hover {
-  background-color: #FF5252;
+  background-color: #000000;
 }
 
 @media (max-width: 480px) {
@@ -257,9 +257,9 @@
 }
 
 .time-button.selected {
-  background-color: #FF6B6B;
+  background-color: #000000;
   color: white;
-  border-color: #FF6B6B;
+  border-color: #000000;
 }
 
 /* react-datepicker 커스텀 스타일 */
@@ -282,7 +282,7 @@
 }
 
 .react-datepicker__day--selected {
-  background-color: #FF6B6B !important;
+  background-color: #000000 !important;
 }
 
 .react-datepicker__day:hover {
@@ -339,7 +339,7 @@
   width: 100%;
   padding: 16px;
   margin-top: 24px;
-  background-color: #FF6B6B;
+  background-color: #000000;
   color: white;
   border: none;
   border-radius: 8px;
@@ -355,7 +355,7 @@
 /* DatePicker 선택된 날짜 스타일 */
 .react-datepicker__day--keyboard-selected {
   background-color: rgba(255, 107, 107, 0.1) !important;
-  color: #FF6B6B !important;
+  color: #000000 !important;
 }
 
 /* 달력 스타일 추가 */

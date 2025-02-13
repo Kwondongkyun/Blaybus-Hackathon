@@ -70,7 +70,7 @@
 .booking-button {
   width: 100%;
   padding: 16px;
-  background-color: #FF6B6B;
+  background-color: #000000;
   color: white;
   border: none;
   border-radius: 8px;
@@ -81,7 +81,7 @@
 }
 
 .booking-button:hover {
-  background-color: #FF5252;
+  background-color: #000000;
 }
 
 .date-picker {
@@ -377,13 +377,13 @@
 }
 
 .confirm-button {
-  background-color: #FF6B6B;
+  background-color: #000000;
   color: white;
   border: none;
 }
 
 .confirm-button:hover {
-  background-color: #FF5252;
+  background-color: #000000;
 }
 
 .cancel-button {
@@ -466,9 +466,9 @@
 }
 
 .payment-button.selected {
-  background-color: #FF6B6B;
+  background-color: #000000;
   color: white;
-  border-color: #FF6B6B;
+  border-color: #000000;
 }
 
 .account-info {
@@ -504,12 +504,12 @@
 }
 
 .confirm-button {
-  background: #FF6B6B;
+  background: #000000;
   color: white;
 }
 
 .confirm-button:hover {
-  background: #FF5252;
+  background: #000000;
 }
 
 .cancel-button:hover {
@@ -556,9 +556,9 @@
 }
 
 .payment-button.selected {
-  background-color: #FF6B6B;
+  background-color: #000000;
   color: white;
-  border-color: #FF6B6B;
+  border-color: #000000;
 }
 
 .account-info {
@@ -595,7 +595,7 @@
 }
 
 .confirm-button {
-  background: #FF6B6B;
+  background: #000000;
   color: white;
 }
 
@@ -611,7 +611,7 @@
 .show-payment-button {
   width: 100%;
   padding: 16px;
-  background-color: #FF6B6B;
+  background-color: #000000;
   color: white;
   border: none;
   border-radius: 12px;
@@ -623,7 +623,7 @@
 }
 
 .show-payment-button:hover {
-  background-color: #FF5252;
+  background-color: #000000;
 }
 
 .payment-modal::before {
@@ -677,7 +677,7 @@
 .confirm-icon {
   width: 60px;
   height: 60px;
-  background: #FF6B6B;
+  background: #000000;
   color: white;
   border-radius: 50%;
   display: flex;
@@ -746,4 +746,37 @@
     transform: scale(1);
     opacity: 1;
   }
+}
+
+.confirm-actions {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.go-to-reservations {
+  padding: 16px 32px;
+  background-color: #000000;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.go-to-reservations:hover {
+  background-color: #000000;
+}
+
+.google-meet-link {
+  color: #4285f4;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.google-meet-link:hover {
+  color: #1a73e8;
+  text-decoration: underline;
 } 

@@ -433,7 +433,7 @@ function DesignerDetail() {
       {showCalendar && (
         <div className={`calendar-modal ${isClosing ? 'closing' : ''}`}>
           <div className="modal-content">
-            <h3>예약 날짜 선택</h3>
+            <h3>컨설팅 희망 날짜를 선택해 주세요</h3>
             <DatePicker
               selected={selectedDate}
               onChange={handleDateSelect}
@@ -446,7 +446,7 @@ function DesignerDetail() {
             />
             {selectedDate && (
               <div className="time-slots">
-                <h4>시간 선택</h4>
+                <h4>컨설팅 희망 시간을 선택해 주세요</h4>
                 <div className="time-section">
                   <h5>오전</h5>
                   <div className="time-grid">
