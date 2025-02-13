@@ -1,6 +1,9 @@
 import { useNavigate, useParams } from "react-router-dom";
 import Footer from "../components/Footer";
+import Header from "../components/Header";
 import designer2second from "./../assets/designer_2second.png";
+import tsportfolio1 from "./../assets/tsportfolio1.png";
+import tsportfolio2 from "./../assets/tsportfolio2.png";
 import location from "./../assets/location.png";
 import "../styles/DesignerList.css";
 
@@ -21,6 +24,7 @@ function DesignerList() {
       image: "https://via.placeholder.com/150",
       rating: 4.9,
       reviewCount: 156,
+      portfolio: [tsportfolio1, tsportfolio2, tsportfolio1],
     },
     {
       id: 2,
@@ -34,6 +38,7 @@ function DesignerList() {
       image: "https://via.placeholder.com/150",
       rating: 4.8,
       reviewCount: 142,
+      portfolio: [tsportfolio1, tsportfolio2, tsportfolio1],
     },
     {
       id: 3,
@@ -47,6 +52,7 @@ function DesignerList() {
       image: "https://via.placeholder.com/150",
       rating: 5.0,
       reviewCount: 189,
+      portfolio: [tsportfolio1, tsportfolio2, tsportfolio1],
     },
     {
       id: 4,
@@ -60,6 +66,7 @@ function DesignerList() {
       image: "https://via.placeholder.com/150",
       rating: 4.9,
       reviewCount: 167,
+      portfolio: [tsportfolio1, tsportfolio2, tsportfolio1],
     },
     {
       id: 5,
@@ -73,6 +80,7 @@ function DesignerList() {
       image: "https://via.placeholder.com/150",
       rating: 4.7,
       reviewCount: 98,
+      portfolio: [tsportfolio1, tsportfolio2, tsportfolio1],
     },
     {
       id: 6,
@@ -86,6 +94,7 @@ function DesignerList() {
       image: "https://via.placeholder.com/150",
       rating: 4.8,
       reviewCount: 145,
+      portfolio: [tsportfolio1, tsportfolio2, tsportfolio1],
     },
     {
       id: 7,
@@ -99,6 +108,7 @@ function DesignerList() {
       image: "https://via.placeholder.com/150",
       rating: 4.9,
       reviewCount: 178,
+      portfolio: [tsportfolio1, tsportfolio2, tsportfolio1],
     },
     {
       id: 8,
@@ -112,6 +122,7 @@ function DesignerList() {
       image: "https://via.placeholder.com/150",
       rating: 4.8,
       reviewCount: 134,
+      portfolio: [tsportfolio1, tsportfolio2, tsportfolio1],
     },
     {
       id: 9,
@@ -125,6 +136,7 @@ function DesignerList() {
       image: "https://via.placeholder.com/150",
       rating: 4.7,
       reviewCount: 112,
+      portfolio: [tsportfolio1, tsportfolio2, tsportfolio1],
     },
     {
       id: 10,
@@ -138,6 +150,7 @@ function DesignerList() {
       image: "https://via.placeholder.com/150",
       rating: 5.0,
       reviewCount: 223,
+      portfolio: [tsportfolio1, tsportfolio2, tsportfolio1],
     },
     {
       id: 11,
@@ -151,6 +164,7 @@ function DesignerList() {
       image: "https://via.placeholder.com/150",
       rating: 4.8,
       reviewCount: 156,
+      portfolio: [tsportfolio1, tsportfolio2, tsportfolio1],
     },
     {
       id: 12,
@@ -164,6 +178,7 @@ function DesignerList() {
       image: "https://via.placeholder.com/150",
       rating: 5.0,
       reviewCount: 245,
+      portfolio: [tsportfolio1, tsportfolio2, tsportfolio1],
     },
     {
       id: 13,
@@ -177,6 +192,7 @@ function DesignerList() {
       image: "https://via.placeholder.com/150",
       rating: 4.7,
       reviewCount: 132,
+      portfolio: [tsportfolio1, tsportfolio2, tsportfolio1],
     },
     {
       id: 14,
@@ -190,6 +206,7 @@ function DesignerList() {
       image: "https://via.placeholder.com/150",
       rating: 4.9,
       reviewCount: 187,
+      portfolio: [tsportfolio1, tsportfolio2, tsportfolio1],
     },
     {
       id: 15,
@@ -203,6 +220,7 @@ function DesignerList() {
       image: "https://via.placeholder.com/150",
       rating: 4.8,
       reviewCount: 165,
+      portfolio: [tsportfolio1, tsportfolio2, tsportfolio1],
     },
     {
       id: 16,
@@ -216,15 +234,17 @@ function DesignerList() {
       image: "https://via.placeholder.com/150",
       rating: 4.9,
       reviewCount: 198,
+      portfolio: [tsportfolio1, tsportfolio2, tsportfolio1],
     },
   ];
 
   const handleDesignerSelect = (designerId) => {
-    navigate(`/booking/${type}/${designerId}`);
+    navigate(`/designer/${type}/${designerId}`);
   };
 
   return (
     <div className="designer-container">
+      <Header text={"대면 디자이너 검색"} />
       <div className="designer-list">
         {designers
           .filter((designer) =>
@@ -238,40 +258,38 @@ function DesignerList() {
               className="designer-card"
               onClick={() => handleDesignerSelect(designer.id)}
             >
-              <img
-                src={designer2second} // designer.image로 바꾸기
-                alt={designer.name}
-                className="designer-image"
-              />
-              <div className="designer-info">
-                <h2>{designer.name}</h2>
-                <p className="area">
-                  <img src={location} />
-                  {designer.area}
-                  <span className="specialty">
-                    {` ${designer.specialty}${" "}`}
-                  </span>
-                </p>
-                {/* <p className="specialty">
-                  전문분야: {designer.specialty}
-                </p> */}
-                {/* <p className="price">
-                  {type === "offline"
-                    ? `대면 상담 ${designer.price.offline.toLocaleString()}원`
-                    : `화상 상담 ${designer.price.online.toLocaleString()}원`}
-                </p> */}
-                <p className="description">{`# ${designer.description}`}</p>
-                {/* <div className="rating">
-                  <span className="stars">★</span>
-                  <span>{designer.rating}</span>
-                  <span className="review-count">
-                    ({designer.reviewCount}개의 리뷰)
-                  </span>
-                </div> */}
+              <div className="desinger-info">
+                <img
+                  src={designer2second} // designer.image로 바꾸기
+                  alt={designer.name}
+                  className="designer-image"
+                />
+                <div className="designer-text">
+                  <h2>{designer.name}</h2>
+                  <p className="area">
+                    <img src={location} />
+                    {designer.area}
+                    <span className="specialty">
+                      {designer.specialty}
+                    </span>
+                  </p>
+                  <p className="description">{`# ${designer.description}`}</p>
+                </div>
+                <button className="select-reserve-button">
+                  예약하기
+                </button>
               </div>
-              <button className="select-designer-button">
-                예약하기
-              </button>
+              {/* 디자이너 포트폴리오 이미지 */}
+              <div className="designer-portfolio">
+                {designer.portfolio.map((image, index) => (
+                  <img
+                    key={index}
+                    src={image}
+                    alt={`${designer.name} 포트폴리오 ${index + 1}`}
+                    className="portfolio-image"
+                  />
+                ))}
+              </div>
             </div>
           ))}
       </div>

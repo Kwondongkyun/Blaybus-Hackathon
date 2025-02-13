@@ -1,11 +1,13 @@
 .designer-container {
   display: flex;
   flex-direction: column;
-  /* padding: 24px; */
-  max-width: 800px;
   margin: 0 auto;
   min-height: 100vh;
-  background-color: palevioletred;
+  background: radial-gradient(
+    circle at center right,
+    rgba(228, 120, 139, 0.9),
+    rgba(255, 244, 246, 1)
+  );
   height: 100vh;
 }
 
@@ -13,6 +15,7 @@
   flex: 1;
   overflow-y: auto;
   padding: 10px;
+  margin-bottom: 50px;
 }
 
 .designer-card {
@@ -21,106 +24,104 @@
   padding: 20px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   display: flex;
-  /* flex-direction: column; */
+  flex-direction: column;
+  gap: 10px;
   cursor: pointer;
   transition: transform 0.2s;
   margin-bottom: 16px;
-  width: 373px; /* 고정 너비 */
-  height: 208px; /* 고정 높이 */
+  width: 373px;
+  height: 208px;
 }
 
 .designer-card:hover {
   transform: translateY(-2px);
 }
 
-.designer-image {
-  width: 70px;
-  height: 70px;
-  border-radius: 60px;
-  object-fit: cover;
-  margin: 0 auto 16px;
+.desinger-info {
+  display: flex;
+  max-height: 70px;
 }
 
-.designer-info {
+.designer-image {
+  width: 70px !important;
+  height: 70px !important;
+  border-radius: 60px !important;
+  object-fit: cover;
+  margin: 0 auto 16px 10px;
+}
+
+.designer-text {
   flex: 1;
   text-align: center;
+  min-width: 180px;
 }
 
-.designer-info h2 {
-  color: #333;
+.designer-text h2 {
+  color: #090a0a;
   font-size: 18px;
   margin-left: 10px;
   text-align: left;
 }
 
 /* 지역 */
-.area {
+.designer-text .area {
   color: #494949;
   font-size: 11px;
   margin-left: 10px;
   text-align: left;
 }
 
-/* 가격 */
-.price {
-  color: #4a90e2;
-  font-weight: 600;
-  font-size: 16px;
-  margin: 8px 0;
-  text-align: center;
-}
-
 /* 특기 */
-.specialty {
+.designer-text .specialty {
   margin-left: 12px;
-  padding: 1px;
+  padding: 10px;
+  padding-top: 1px;
+  padding-bottom: 1px;
   background-color: #888ef1;
   color: #ffffff;
   border-radius: 48px;
   border: none;
   text-align: center;
+  font-size: 10px;
 }
 
 /* 한줄 소개 */
-.description {
+.designer-text .description {
   color: #444;
-  font-size: 12px;
-  line-height: 1.5;
-  margin: 12px 0;
-  text-align: center;
+  font-size: 8px;
+  margin: 5px 0 0 10px;
+  text-align: left;
 }
 
-.rating {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  margin-bottom: 16px;
-}
-
-.stars {
-  color: #ffd700;
-}
-
-.review-count {
-  color: #666;
-  font-size: 14px;
-}
-
-.select-designer-button {
+.select-reserve-button {
   background-color: rgba(255, 255, 255, 0.2);
   color: #a42d4e;
   border: 1px solid #a42d4e;
   border-radius: 48px;
-  /* padding: 16px 19px 16px 20px; */
   font-size: 10px;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 5ms;
   width: 78px;
   height: 27px;
+  margin-right: 10px;
+  margin-top: 10px;
 }
 
 .select-designer-button:hover {
   background-color: #357abd;
+}
+
+.designer-portfolio {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 11px;
+  width: 333px;
+  height: 94px;
+}
+
+.portfolio-image {
+  width: 90px;
+  height: 90px;
+  border-radius: 4px;
 }
