@@ -22,15 +22,114 @@ function BookingPage() {
         name: "이초 디자이너",
         price: { offline: 40000, online: 20000 },
         account: "신한은행 110-123-456789",
-        accountHolder: "이초"
+        accountHolder: "이초",
+        location: "서울 강남구 압구정로79길"
       },
       2: {
         name: "로로 원장",
         price: { offline: 40000, online: 34000 },
         account: "국민은행 123-12-123456",
-        accountHolder: "로로"
+        accountHolder: "로로",
+        location: "서울 마포구 어울마당로 19"
       },
-      // ... 다른 디자이너 정보
+      3: {
+        name: "슈 대표원장",
+        price: { offline: 41000, online: 20000 },
+        account: "우리은행 1002-123-456789",
+        accountHolder: "슈",
+        location: "서울 마포구 동교로 255"
+      },
+      4: {
+        name: "랑 원장",
+        price: { offline: 41000, online: 34000 },
+        account: "하나은행 287-910111-12345",
+        accountHolder: "랑",
+        location: "서울 마포구 와우산로 101"
+      },
+      5: {
+        name: "히지 디자이너",
+        price: { offline: 31000, online: 20000 },
+        account: "카카오뱅크 3333-12-3456789",
+        accountHolder: "히지",
+        location: "서울 성동구 왕십리로8길 3"
+      },
+      6: {
+        name: "현영 디자이너",
+        price: { offline: 30000, online: 34000 },
+        account: "신한은행 110-987-654321",
+        accountHolder: "현영",
+        location: "서울 성동구 왕십리로 106"
+      },
+      7: {
+        name: "나나 디자이너",
+        price: { offline: 32000, online: 34000 },
+        account: "국민은행 123-45-678910",
+        accountHolder: "나나",
+        location: "서울 성동구 성수일로4길 33"
+      },
+      8: {
+        name: "이아 디자이너",
+        price: { offline: 40000, online: 20000 },
+        account: "우리은행 1002-987-654321",
+        accountHolder: "이아",
+        location: "서울 성동구 성수일로6길"
+      },
+      9: {
+        name: "주 디자이너",
+        price: { offline: 41000, online: 34000 },
+        account: "하나은행 287-910111-99999",
+        accountHolder: "주",
+        location: "서울 성동구 왕십리로2길"
+      },
+      10: {
+        name: "희 수석디자이너",
+        price: { offline: 40000, online: 34000 },
+        account: "카카오뱅크 3333-12-987654",
+        accountHolder: "희",
+        location: "서울 강남구 논현로85길 43"
+      },
+      11: {
+        name: "시오 부원장",
+        price: { offline: 30000, online: 22000 },
+        account: "신한은행 110-345-678912",
+        accountHolder: "시오",
+        location: "서울 서초구 강남대로97길"
+      },
+      12: {
+        name: "휘리 원장",
+        price: { offline: 40000, online: 20000 },
+        account: "국민은행 123-45-123456",
+        accountHolder: "휘리",
+        location: "서울 마포구 양화로7안길 12"
+      },
+      13: {
+        name: "유하 디자이너",
+        price: { offline: 34000, online: 34000 },
+        account: "우리은행 1002-345-678912",
+        accountHolder: "유하",
+        location: "서울 마포구 잔다리로 48"
+      },
+      14: {
+        name: "은이 수석디자이너",
+        price: { offline: 32000, online: 20000 },
+        account: "하나은행 287-910111-55555",
+        accountHolder: "은이",
+        location: "서울 마포구 홍익로5길"
+      },
+      15: {
+        name: "미미 컬러리스트",
+        price: { offline: 41000, online: 34000 },
+        account: "카카오뱅크 3333-12-345678",
+        accountHolder: "미미",
+        location: "서울 마포구 양화로 100"
+      },
+      16: {
+        name: "하루 컬러리스트",
+        price: { offline: 40000, online: 20000 },
+        account: "신한은행 110-567-891234",
+        accountHolder: "하루",
+        location: "서울 마포구 홍익로 3"
+      }
     }[designerId];
 
     setDesigner(designerData);

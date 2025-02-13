@@ -134,37 +134,6 @@
   }
 }
 
-/* 다크 모드 */
-@media (prefers-color-scheme: dark) {
-  .designer-container {
-    background-color: #1a1a1a;
-  }
-
-  .designer-title {
-    color: #ffffff;
-  }
-
-  .designer-card {
-    background-color: #2a2a2a;
-  }
-
-  .designer-info h2 {
-    color: #ffffff;
-  }
-
-  .experience, .specialty {
-    color: #b0b0b0;
-  }
-
-  .description {
-    color: #cccccc;
-  }
-
-  .review-count {
-    color: #b0b0b0;
-  }
-}
-
 /* 기존 CSS에 추가 */
 .area {
   color: #666;

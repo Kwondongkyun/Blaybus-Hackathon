@@ -28,8 +28,7 @@ function Login() {
   return (
     <div className="login-container">
       <div className="login-box">
-        <h1 className="login-title">Glow Up!</h1>
-        <p className="login-subtitle">헤어 컨설팅 어플</p>
+        <h1 className="login-title">haertz</h1>
         
         <form onSubmit={handleSubmit} className="login-form">
           <div className="input-group">
@@ -40,7 +39,7 @@ function Login() {
               name="email"
               value={loginData.email}
               onChange={handleChange}
-              placeholder="이메일을 입력하세요"
+              placeholder="Email"
               required
             />
           </div>
@@ -53,22 +52,23 @@ function Login() {
               name="password"
               value={loginData.password}
               onChange={handleChange}
-              placeholder="비밀번호를 입력하세요"
+              placeholder="password"
               required
             />
           </div>
 
+          <div className="login-footer">
+          <a href="#" className="forgot-password">Forgot Password?</a>
+          <span className="divider"></span>
+          </div>
+
           <button type="submit" className="login-button">
-            Login
+            Log in
           </button>
         </form>
 
 
-        <div className="login-footer">
-          <a href="#" className="forgot-password">Forgot Password?</a>
-          <span className="divider">|</span>
-          <a href="/signup" className="signup-link">Sign Up</a>
-        </div>
+        
       </div>
     </div>
   );

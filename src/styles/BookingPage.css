@@ -84,43 +84,6 @@
   background-color: #357abd;
 }
 
-/* 다크 모드 */
-@media (prefers-color-scheme: dark) {
-  .booking-container {
-    background-color: #1a1a1a;
-  }
-
-  .booking-title {
-    color: #ffffff;
-  }
-
-  .booking-form {
-    background-color: #2a2a2a;
-  }
-
-  .form-group label {
-    color: #ffffff;
-  }
-
-  .form-group select {
-    background-color: #333333;
-    border-color: #404040;
-    color: #ffffff;
-  }
-
-  .booking-summary {
-    background-color: #333333;
-  }
-
-  .booking-summary h2 {
-    color: #ffffff;
-  }
-
-  .booking-summary p {
-    color: #cccccc;
-  }
-}
-
 .date-picker {
   width: 100%;
   padding: 8px;
@@ -192,43 +155,6 @@
   top: 8px;
 }
 
-/* 다크 모드 */
-@media (prefers-color-scheme: dark) {
-  .date-picker {
-    background-color: #333333;
-    border-color: #404040;
-    color: #ffffff;
-  }
-
-  .react-datepicker {
-    background-color: #2a2a2a;
-    border-color: #404040;
-  }
-
-  .react-datepicker__header {
-    background-color: #333333;
-    border-color: #404040;
-  }
-
-  .react-datepicker__current-month,
-  .react-datepicker__day-name {
-    color: #ffffff;
-  }
-
-  .react-datepicker__day {
-    color: #ffffff;
-    background-color: #2a2a2a;
-  }
-
-  .react-datepicker__day:hover {
-    background-color: #404040;
-  }
-
-  .react-datepicker__day--disabled {
-    color: #666;
-  }
-}
-
 .designer-info-summary {
   margin-bottom: 16px;
   padding: 12px;
@@ -286,56 +212,6 @@
   color: #4a90e2;
   font-weight: 600;
   font-size: 16px;
-}
-
-/* 다크 모드에 추가 */
-@media (prefers-color-scheme: dark) {
-  .designer-info-summary {
-    background-color: #333333;
-  }
-
-  .designer-name {
-    color: #ffffff;
-  }
-
-  .designer-info-summary h2 {
-    color: #ffffff;
-  }
-
-  .consultation-price {
-    color: #66b0ff;  /* 밝은 파란색으로 변경 */
-  }
-
-  .payment-info {
-    background-color: #332b1a;
-    border-color: #665429;
-  }
-
-  .payment-info h2,
-  .account-info,
-  .account-holder {
-    color: #ffffff;
-  }
-
-  .payment-notice {
-    color: #b0b0b0;
-  }
-
-  .price-info {
-    color: #66b0ff;  /* 밝은 파란색으로 변경 */
-  }
-
-  .booking-summary {
-    background-color: #333333;
-  }
-
-  .booking-summary h2 {
-    color: #ffffff;
-  }
-
-  .booking-summary p {
-    color: #cccccc;
-  }
 }
 
 .time-selection {
@@ -396,28 +272,6 @@
 
   .time-grid {
     grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-/* 다크 모드 */
-@media (prefers-color-scheme: dark) {
-  .time-section h3 {
-    color: #ffffff;
-  }
-
-  .time-slot {
-    background-color: #2a2a2a;
-    border-color: #404040;
-    color: #ffffff;
-  }
-
-  .time-slot:hover {
-    background-color: #333333;
-  }
-
-  .time-slot.selected {
-    background-color: #4a90e2;
-    color: white;
   }
 }
 
@@ -505,37 +359,4 @@
 
 .cancel-button:hover {
   background-color: #f5f5f5;
-}
-
-/* 다크 모드 */
-@media (prefers-color-scheme: dark) {
-  .confirmation-popup {
-    background-color: #2a2a2a;
-  }
-
-  .confirmation-popup h2 {
-    color: #ffffff;
-  }
-
-  .confirmation-content p {
-    color: #b0b0b0;
-  }
-
-  .confirmation-content strong {
-    color: #ffffff;
-  }
-
-  .payment-info-summary {
-    border-color: #404040;
-  }
-
-  .cancel-button {
-    background-color: #2a2a2a;
-    border-color: #404040;
-    color: #b0b0b0;
-  }
-
-  .cancel-button:hover {
-    background-color: #333333;
-  }
 } 

@@ -1,0 +1,179 @@
+.designer-detail-container {
+  padding: 16px;
+  max-width: 600px;
+  margin: 0 auto;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+.designer-profile {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.designer-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 60px;
+  object-fit: cover;
+}
+
+.designer-info h1 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.area, .specialty, .career {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.stars {
+  color: #ffd700;
+}
+
+.review-count {
+  color: #666;
+  font-size: 14px;
+}
+
+.consultation-info {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.consultation-info h2 {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 16px;
+}
+
+.price-info {
+  margin-bottom: 16px;
+}
+
+.price-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+
+.price-item span:last-child {
+  color: #4a90e2;
+  font-weight: 500;
+}
+
+.location {
+  color: #666;
+  font-size: 14px;
+}
+
+.designer-introduction {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.designer-introduction h2 {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 16px;
+}
+
+.designer-introduction p {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.reviews-section {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.reviews-section h2 {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 16px;
+}
+
+.review-item {
+  padding: 16px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.review-item:last-child {
+  border-bottom: none;
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.review-stars {
+  color: #ffd700;
+}
+
+.review-date {
+  color: #666;
+  font-size: 14px;
+}
+
+.review-comment {
+  color: #333;
+  line-height: 1.5;
+}
+
+.booking-button {
+  width: 100%;
+  padding: 16px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.booking-button:hover {
+  background-color: #357abd;
+}
+
+@media (max-width: 480px) {
+  .designer-profile {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .rating {
+    justify-content: center;
+  }
+} 

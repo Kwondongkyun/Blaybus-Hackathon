@@ -26,20 +26,19 @@
 }
 
 .login-title {
-  text-align: center;
-  color: #333;
-  font-size: 24px;
-  font-weight: 600;
-  margin-bottom: 8px;
-  letter-spacing: -0.5px;
-}
+  align-self: stretch;
 
-.login-subtitle {
+  color: var(--font-090-a-0-a, #090A0A);
   text-align: center;
-  color: #666;
-  font-size: 15px;
-  margin-bottom: 32px;
-  letter-spacing: -0.3px;
+  
+  /* Heading/H2_EB */
+  font-family: Pretendard;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+  color: var(--brand-e-35-a-80, #E35A80);
+
 }
 
 .input-group {
@@ -81,8 +80,8 @@
 .login-button {
   width: 100%;
   padding: 16px;
-  background-color: #4a90e2;
-  color: white;
+  background-color: #A42D4E;
+  color: #ffffff;
   border: none;
   border-radius: 12px;
   font-size: 16px;
@@ -166,52 +165,5 @@
   
   .login-button:hover {
     background-color: #357abd;
-  }
-}
-
-/* 다크 모드 지원 */
-@media (prefers-color-scheme: dark) {
-  .login-container {
-    background-color: #1a1a1a;
-  }
-  
-  .login-box {
-    background-color: #2a2a2a;
-  }
-  
-  .login-title {
-    color: #ffffff;
-  }
-  
-  .login-subtitle {
-    color: #b0b0b0;
-  }
-  
-  .input-group label {
-    color: #ffffff;
-  }
-  
-  .input-group input {
-    background-color: #333333;
-    border-color: #404040;
-    color: #ffffff;
-  }
-  
-  .input-group input:focus {
-    border-color: #4a90e2;
-    background-color: #404040;
-  }
-  
-  .login-footer a {
-    color: #b0b0b0;
-  }
-
-  .social-login {
-    border-top-color: #404040;
-  }
-
-  .divider-text span {
-    background-color: #2a2a2a;
-    color: #b0b0b0;
   }
 } 
