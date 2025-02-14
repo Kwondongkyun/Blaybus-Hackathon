@@ -6,164 +6,54 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-/* 모바일 우선 스타일 */
-.login-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background-color: #ffffff;
-  padding: 16px;
+html, body {
   width: 100%;
-}
-
-.login-box {
-  background: white;
-  padding: 24px 16px;
-  width: 100%;
-  max-width: 100%;
-  margin: 0 auto;
-}
-
-.login-title {
-  align-self: stretch;
-
-  color: var(--font-090-a-0-a, #090A0A);
-  text-align: center;
-  
-  /* Heading/H2_EB */
-  font-family: Pretendard;
-  font-size: 26px;
-  font-style: normal;
-  font-weight: 800;
-  line-height: normal;
-  color: var(--brand-e-35-a-80, #E35A80);
-
-}
-
-.input-group {
-  margin-bottom: 20px;
-}
-
-.input-group label {
-  display: block;
-  margin-bottom: 8px;
-  color: #333;
-  font-size: 15px;
-  font-weight: 500;
-}
-
-.input-group input {
-  width: 100%;
-  padding: 15px;
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  font-size: 16px;
-  -webkit-appearance: none;
-  appearance: none;
-  background-color: #f8f8f8;
-}
-
-.input-group input:focus {
-  outline: none;
-  border-color: #4a90e2;
-  background-color: #fff;
-}
-
-/* iOS 스타일 입력 필드 최적화 */
-.input-group input[type="email"],
-.input-group input[type="password"] {
-  padding: 15px;
-  font-size: 16px; /* iOS에서 자동 확대 방지 */
-}
-
-.login-button {
-  width: 100%;
-  padding: 16px;
-  background-color: #A42D4E;
-  color: #ffffff;
-  border: none;
-  border-radius: 12px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  -webkit-tap-highlight-color: transparent;
-  margin-top: 8px;
-}
-
-/* 터치 디바이스를 위한 활성 상태 스타일 */
-.login-button:active {
-  background-color: #357abd;
-  transform: scale(0.98);
-}
-
-.login-footer {
-  margin-top: 28px;
-  text-align: center;
-  font-size: 15px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 16px;
-}
-
-.login-footer a {
-  color: #666;
-  text-decoration: none;
-  padding: 8px 4px;
-}
-
-.divider {
-  color: #ddd;
-}
-
-/* 소셜 로그인 스타일 */
-.social-login {
-  margin-top: 24px;
-  padding-top: 24px;
-  border-top: 1px solid #eee;
-}
-
-.divider-text {
+  overflow-x: hidden !important;  /* 강제 적용 */
+  margin: 0;
+  padding: 0;
   position: relative;
-  text-align: center;
-  margin-bottom: 20px;
 }
 
-.divider-text span {
-  background-color: #fff;
-  padding: 0 10px;
-  color: #666;
-  font-size: 14px;
-}
 
-.google-login-wrapper {
+.main_container { 
+  width: 100vw;
+  max-width: 100%; /* 내부 요소가 초과하지 않도록 제한 */
+  height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  margin-bottom: 20px;
+  align-items: center;
+  overflow: hidden;
 }
 
-/* 안전 영역 고려 (iPhone X 이상) */
-@supports (padding: max(0px)) {
-  .login-container {
-    padding: max(16px, env(safe-area-inset-top))
-             max(16px, env(safe-area-inset-right))
-             max(16px, env(safe-area-inset-bottom))
-             max(16px, env(safe-area-inset-left));
-  }
+.main_container span {
+  color: var(--font-090-a-0-a, #090A0A);
+  font-family: Pretendard;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 2.5rem;
 }
 
-/* 태블릿 이상 디바이스 */
-@media screen and (min-width: 768px) {
-  .login-box {
-    max-width: 400px;
-    padding: 40px;
-    border-radius: 16px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .login-button:hover {
-    background-color: #357abd;
-  }
-} 
+.first_state {
+  margin-top: 2rem;
+}
+
+.google_login_state {
+  color: var(--font-090-a-0-a, #090A0A);
+  font-family: Inter;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5rem;
+  margin-top: 1.75rem;
+}
+
+.google_login_link {
+  color: var(--brand-e-35-a-80, #E35A80);
+  font-family: Inter;
+  font-size: 0.7rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.5rem;
+}

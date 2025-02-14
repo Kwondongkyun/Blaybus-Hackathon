@@ -3,6 +3,7 @@
   max-width: 800px;
   margin: 0 auto;
   min-height: 100vh;
+  background-color: #f8f9fa;
 }
 
 .designer-title {
@@ -86,7 +87,7 @@
 }
 
 .select-designer-button {
-  background-color: #E35A80;
+  background-color: #4a90e2;
   color: white;
   border: none;
   border-radius: 8px;
@@ -99,7 +100,7 @@
 }
 
 .select-designer-button:hover {
-  background-color: #c7466b;
+  background-color: #357abd;
 }
 
 /* 태블릿 이상 화면 */
@@ -130,6 +131,37 @@
   .select-designer-button {
     width: auto;
     padding: 12px 24px;
+  }
+}
+
+/* 다크 모드 */
+@media (prefers-color-scheme: dark) {
+  .designer-container {
+    background-color: #1a1a1a;
+  }
+
+  .designer-title {
+    color: #ffffff;
+  }
+
+  .designer-card {
+    background-color: #2a2a2a;
+  }
+
+  .designer-info h2 {
+    color: #ffffff;
+  }
+
+  .experience, .specialty {
+    color: #b0b0b0;
+  }
+
+  .description {
+    color: #cccccc;
+  }
+
+  .review-count {
+    color: #b0b0b0;
   }
 }
 
