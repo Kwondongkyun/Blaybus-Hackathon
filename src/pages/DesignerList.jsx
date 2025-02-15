@@ -24,7 +24,11 @@ function DesignerList() {
       image: "https://via.placeholder.com/150",
       rating: 4.9,
       reviewCount: 156,
-      portfolio: [tsportfolio1, tsportfolio2, tsportfolio1],
+      portfolio: [
+        "https://via.placeholder.com/150",
+        "https://via.placeholder.com/150",
+        "https://via.placeholder.com/150",
+      ],
     },
     {
       id: 2,
