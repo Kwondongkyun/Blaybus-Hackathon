@@ -6,8 +6,6 @@ import "react-datepicker/dist/react-datepicker.css";
 import { ko } from "date-fns/locale";
 
 import designertwosecond from "./../assets/designertwosecond.png";
-import tsportfolio1 from "./../assets/tsportfolio1.png";
-import tsportfolio2 from "./../assets/tsportfolio2.png";
 import location from "./../assets/location.png";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
