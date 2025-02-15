@@ -503,6 +503,10 @@ function DesignerDetail() {
           </div>
           <div className="blank"></div>
         </div>
+        <div className="designer-introduction">
+          <p>{designer.introduction}</p>
+          <p className="description">{designer.description}</p>
+        </div>
 
         <div className="consultation-info">
           <h2>상담 정보</h2>
@@ -528,17 +532,11 @@ function DesignerDetail() {
           )}
         </div>
 
-        <div className="designer-introduction">
-          <h2>디자이너 소개</h2>
-          <p>{designer.introduction}</p>
-          <p className="description">{designer.description}</p>
-        </div>
-
-        <div className="reviews-section">
+        <div className="designer-detail-portfolio">
           <h2>Before & After</h2>
-          <div className="reviews-list">
+          {/* <div className="portfolio-list">
             {designer.reviews.map((review) => (
-              <div key={review.id} className="review-item">
+              <div key={review.id} className="portfolio-item">
                 <div className="review-header">
                   <span className="review-stars">
                     {"★".repeat(review.rating)}
@@ -548,86 +546,81 @@ function DesignerDetail() {
                 <p className="review-comment">{review.comment}</p>
               </div>
             ))}
+          </div> */}
+        </div>
+      </div>
+      <button onClick={handleBookingClick} className="booking-button">
+        예약하기
+      </button>
+      {/* 모달 부분 */}
+      {showCalendar && (
+        <div
+          className={`calendar-modal ${isClosing ? "closing" : ""}`}
+        >
+          <div className="modal-content">
+            <h3>컨설팅 희망 날짜를 선택해 주세요</h3>
+            <DatePicker
+              selected={selectedDate}
+              onChange={handleDateSelect}
+              inline
+              locale={ko}
+              minDate={minDate}
+              maxDate={maxDate}
+              dateFormat="yyyy.MM.dd"
+              placeholderText="날짜를 선택하세요"
+            />
+            {selectedDate && (
+              <div className="time-slots">
+                <h4>컨설팅 희망 시간을 선택해 주세요</h4>
+                <div className="time-section">
+                  <h5>오전</h5>
+                  <div className="time-grid">
+                    {generateTimeSlots(selectedDate).morning.map(
+                      (time) => (
+                        <button
+                          key={time}
+                          onClick={() => handleTimeSelect(time)}
+                          className={`time-button ${
+                            selectedTime === time ? "selected" : ""
+                          }`}
+                        >
+                          {time}
+                        </button>
+                      )
+                    )}
+                  </div>
+                </div>
+                <div className="time-section">
+                  <h5>오후</h5>
+                  <div className="time-grid">
+                    {generateTimeSlots(selectedDate).afternoon.map(
+                      (time) => (
+                        <button
+                          key={time}
+                          onClick={() => handleTimeSelect(time)}
+                          className={`time-button ${
+                            selectedTime === time ? "selected" : ""
+                          }`}
+                        >
+                          {time}
+                        </button>
+                      )
+                    )}
+                  </div>
+                </div>
+                {canProceed && (
+                  <button
+                    onClick={handleProceedBooking}
+                    className="proceed-booking-button"
+                  >
+                    예약 진행하기
+                  </button>
+                )}
+              </div>
+            )}
           </div>
         </div>
-
-        <button
-          onClick={handleBookingClick}
-          className="booking-button"
-        >
-          예약하기
-        </button>
-
-        {/* 모달 부분 */}
-        {showCalendar && (
-          <div
-            className={`calendar-modal ${isClosing ? "closing" : ""}`}
-          >
-            <div className="modal-content">
-              <h3>컨설팅 희망 날짜를 선택해 주세요</h3>
-              <DatePicker
-                selected={selectedDate}
-                onChange={handleDateSelect}
-                inline
-                locale={ko}
-                minDate={minDate}
-                maxDate={maxDate}
-                dateFormat="yyyy.MM.dd"
-                placeholderText="날짜를 선택하세요"
-              />
-              {selectedDate && (
-                <div className="time-slots">
-                  <h4>컨설팅 희망 시간을 선택해 주세요</h4>
-                  <div className="time-section">
-                    <h5>오전</h5>
-                    <div className="time-grid">
-                      {generateTimeSlots(selectedDate).morning.map(
-                        (time) => (
-                          <button
-                            key={time}
-                            onClick={() => handleTimeSelect(time)}
-                            className={`time-button ${
-                              selectedTime === time ? "selected" : ""
-                            }`}
-                          >
-                            {time}
-                          </button>
-                        )
-                      )}
-                    </div>
-                  </div>
-                  <div className="time-section">
-                    <h5>오후</h5>
-                    <div className="time-grid">
-                      {generateTimeSlots(selectedDate).afternoon.map(
-                        (time) => (
-                          <button
-                            key={time}
-                            onClick={() => handleTimeSelect(time)}
-                            className={`time-button ${
-                              selectedTime === time ? "selected" : ""
-                            }`}
-                          >
-                            {time}
-                          </button>
-                        )
-                      )}
-                    </div>
-                  </div>
-                  {canProceed && (
-                    <button
-                      onClick={handleProceedBooking}
-                      className="proceed-booking-button"
-                    >
-                      예약 진행하기
-                    </button>
-                  )}
-                </div>
-              )}
-            </div>
-          </div>
-        )}
-      </div>
+      )}
       <Footer />
     </div>
   );
