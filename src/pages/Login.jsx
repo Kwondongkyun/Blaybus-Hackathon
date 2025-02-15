@@ -1,5 +1,6 @@
 import GoogleLogin from './GoogleLogin';
 import BackgroundCircle from './BackgroundCircle';
+import Header from '../components/Header';
 import '../styles/Login.css';
 
 function Login() {
