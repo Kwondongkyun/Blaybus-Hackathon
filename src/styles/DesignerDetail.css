@@ -16,7 +16,8 @@
 }
 
 .designer-reserve-page {
-  margin: 0 16px 100px 16px;
+  margin: 0 16px 110px 16px;
+  overflow-y: auto;
 }
 
 .designer-reserve-page .designer-profile {

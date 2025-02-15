@@ -1,7 +1,6 @@
-.designer-container {
+.designerlist-container {
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
   margin: 0 auto;
   min-height: 100vh;
   background: radial-gradient(
@@ -12,7 +11,7 @@
   height: 100vh;
 }
 
-.designer-list {
+.designerlist-list {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -43,26 +42,26 @@
   transform: translateY(-2px);
 }
 
-.desinger-info {
+.designerlist-info {
   display: flex;
   max-height: 70px;
 }
 
-.designer-image {
-  width: 70px !important;
-  height: 70px !important;
-  border-radius: 60px !important;
+.designerlist-info .designerlist-profile {
+  width: 70px;
+  height: 70px;
+  border-radius: 60px;
   object-fit: cover;
   margin: 0 auto 16px 10px;
 }
 
-.designer-text {
+.designerlist-text {
   flex: 1;
   text-align: center;
   min-width: 180px;
 }
 
-.designer-text h2 {
+.designerlist-text h2 {
   color: #090a0a;
   font-size: 18px;
   margin-left: 10px;
@@ -70,7 +69,7 @@
 }
 
 /* 지역 */
-.designer-text .area {
+.designerlist-text .designerlist-region {
   color: #494949;
   font-size: 11px;
   margin-left: 10px;
@@ -78,7 +77,7 @@
 }
 
 /* 특기 */
-.designer-text .specialty {
+.designerlist-text .designerlist-region .designerlist-field {
   margin-left: 12px;
   padding: 10px;
   padding-top: 1px;
@@ -92,7 +91,7 @@
 }
 
 /* 한줄 소개 */
-.designer-text .description {
+.designerlist-text .introduction {
   color: #444;
   font-size: 8px;
   margin: 5px 0 0 10px;
@@ -118,7 +117,7 @@
   background-color: #357abd;
 }
 
-.designer-portfolio {
+.designerlist-portfolio {
   display: flex;
   justify-content: space-evenly;
   gap: 11px;
@@ -126,7 +125,7 @@
   height: 94px;
 }
 
-.portfolio-image {
+.designerlist-portfolio .portfolio-image {
   width: 90px;
   height: 90px;
   border-radius: 4px;
