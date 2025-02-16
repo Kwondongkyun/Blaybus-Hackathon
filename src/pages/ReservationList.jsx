@@ -14,6 +14,7 @@ const ReservationList = () => {
   const [meetingLink, setMeetingLink] = useState("");
   const navigate = useNavigate();
 
+
   useEffect(() => {
     const fetchReservations = async () => {
       try {
