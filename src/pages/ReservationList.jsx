@@ -7,13 +7,11 @@ import RectangleGray from "../assets/rectanglegray.png";
 import Footer from "../components/Footer.jsx";
 import HeaderReservation from "../components/HeaderReservation.jsx";
 
-
 axios.defaults.baseURL = "https://blaybus-glowup.com";
 
 const ReservationList = () => {
   const [reservations, setReservations] = useState([]);
   const [meetingLink, setMeetingLink] = useState("");
-
 
   useEffect(() => {
     const fetchReservations = async () => {
@@ -43,7 +41,6 @@ const ReservationList = () => {
         );
       } catch (error) {
         console.error("데이터 불러오기 실패:", error);
-
       }
     };
 
@@ -63,7 +60,6 @@ const ReservationList = () => {
     }
   };
 
-
   const [showPopup, setShowPopup] = useState(false);
 
   const handleCancelClick = () => setShowPopup(true);
@@ -71,7 +67,7 @@ const ReservationList = () => {
 
   return (
     <R.Container>
-      <HeaderReservation/>
+      <HeaderReservation />
       <R.Title>
         <R.BackImage src={Back} alt="Back" />
         <R.TitleContent>예약 내역 조회</R.TitleContent>
@@ -88,7 +84,6 @@ const ReservationList = () => {
         >
           {meetingLink || "링크 생성 중..."}
         </R.CLink>
-
       </R.Consulting>
       <R.ConsultingContent>
         <R.D>
@@ -122,9 +117,15 @@ const ReservationList = () => {
       {showPopup && (
         <R.PopupOverlay onClick={handleClosePopup}>
           <R.Popup>
-            <R.RectangleGrayImage src={RectangleGray} alt="RectangleGray"/>
+            <R.RectangleGrayImage
+              src={RectangleGray}
+              alt="RectangleGray"
+            />
             <R.PopupTitle>정말 취소하시겠습니까?</R.PopupTitle>
-            <R.PopupText>선택하신 날짜와 시간은 취소되고, <br/> 메인 화면으로 돌아갑니다.</R.PopupText>
+            <R.PopupText>
+              선택하신 날짜와 시간은 취소되고, <br /> 메인 화면으로
+              돌아갑니다.
+            </R.PopupText>
             <R.PopupButtonGroup>
               <R.PopupButton primary onClick={handleRCancelClick}>
                 예약 취소
@@ -132,14 +133,13 @@ const ReservationList = () => {
               <R.PopupButton onClick={handleClosePopup}>
                 돌아가기
               </R.PopupButton>
-
             </R.PopupButtonGroup>
           </R.Popup>
         </R.PopupOverlay>
       )}
-      <Footer/>
+      <Footer />
     </R.Container>
   );
-}
+};
 
 export default ReservationList;
