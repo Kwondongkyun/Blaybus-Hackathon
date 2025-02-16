@@ -11,12 +11,17 @@ const ReservationList = () => {
 
   const handleCancelClick = () => setShowPopup(true);
   const handleClosePopup = () => setShowPopup(false);
+  const navigate = useNavigate();
 
   return (
     <R.Container>
       <HeaderReservation />
       <R.Title>
-        <R.BackImage src={Back} alt="Back" />
+        <R.BackImage
+          src={Back}
+          alt="Back"
+          onClick={() => navigate("/main")}
+        />
         <R.TitleContent>예약 내역 조회</R.TitleContent>
       </R.Title>
       <R.Title2>예약 내역</R.Title2>
@@ -63,7 +68,10 @@ const ReservationList = () => {
               돌아갑니다.
             </R.PopupText>
             <R.PopupButtonGroup>
-              <R.PopupButton primary onClick={handleClosePopup}>
+              <R.PopupButton
+                primary
+                onClick={() => navigate("/main")}
+              >
                 예약 취소
               </R.PopupButton>
               <R.PopupButton onClick={handleClosePopup}>
