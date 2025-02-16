@@ -5,7 +5,6 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { ko } from "date-fns/locale";
 
-import designertwosecond from "./../assets/designertwosecond.png";
 import location from "./../assets/location.png";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -109,7 +108,7 @@ function DesignerDetail() {
       <div className="designer-reserve-page">
         <div className="designer-profile">
           <img
-            src={designer.profile || designertwosecond}
+            src={designer.profile}
             alt={designer.name}
             className="designer-detail-image"
           />
