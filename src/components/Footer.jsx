@@ -20,7 +20,7 @@ const Footer = () => {
       </button>
       <button
         className="footer-button"
-        onClick={() => navigate("/search")}
+        onClick={() => navigate("/mypage")}
       >
         <img
           src={mypagebtn_gray}
