@@ -8,7 +8,6 @@ const Footer = () => {
   const navigate = useNavigate();
   return (
     <div className="footer">
-      {/* 메인페이지 이동 */}
       <button
         className="footer-button"
         onClick={() => navigate("/main")}
@@ -19,7 +18,6 @@ const Footer = () => {
           className="footer-icon"
         />
       </button>
-      {/* 마이페이지 이동 */}
       <button
         className="footer-button"
         onClick={() => navigate("/mypage")}
@@ -39,8 +37,6 @@ const Footer = () => {
           src={Calendarbtn_gray}
           alt="예약내역조회"
           className="footer-icon"
-          // 예약내역 조회 페이지로 이동
-          // onClick={()=>navigate("/...")}
         />
       </button>
     </div>
