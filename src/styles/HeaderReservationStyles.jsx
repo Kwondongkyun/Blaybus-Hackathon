@@ -4,8 +4,8 @@ export const Container = styled.div`
     position: fixed;
     top: 2%;
     gap: 40%;
-    width: 100%;
-    max-width: 800px;
+    width: 393px;   
+    max-width: 393px;
     padding: 10px;
     text-align: center;
     display: flex;
