@@ -58,7 +58,11 @@ const MyPage = () => {
     <M.Container>
       <HeaderReservation />
       <M.Title>
-        <M.BackImage src={Back} alt="Back" />
+        <M.BackImage
+          src={Back}
+          alt="Back"
+          onClick={() => navigate("/main")}
+        />
         <M.TitleContent>마이페이지</M.TitleContent>
       </M.Title>
       <M.Title2>
