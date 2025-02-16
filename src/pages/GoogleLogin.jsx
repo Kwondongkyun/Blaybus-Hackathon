@@ -1,21 +1,24 @@
-import '../styles/GoogleLogin.css';
+import "../styles/GoogleLogin.css";
+//import googleImg from './../assets/google-logo.png';
 
 function GoogleLogin() {
-    const handleLogin = () => {
-        window.location.href = "https://blaybus-glowup.com/oauth2/authorization/google?redirect_uri=https://front.blaybus-glowup.com/&mode=login";
-    };
-    
-    const googleimg = './src/assets/google-logo.png'; 
+  const handleLogin = () => {
+    window.location.href =
+      "https://blaybus-glowup.com/oauth2/authorization/google?redirect_uri=https://uhyeon.blaybus-glowup.com/main&mode=login";
+  };
 
-    return (
-        <button 
-            type="button" 
-            onClick={handleLogin} 
-            className='google_login'
-        >
-        <img src={googleimg}/>구글로 시작하기
-        </button>
-    );
+  //const googleimg = './../assets/google-logo.png';
+
+  return (
+    <button
+      type="button"
+      onClick={handleLogin}
+      className="google_login"
+    >
+      <img src="/assets/google-logo.png" />
+      구글로 시작하기
+    </button>
+  );
 }
 
 export default GoogleLogin;
