@@ -4,6 +4,7 @@ import MainPage from './pages/MainPage';
 import DesignerList from './pages/DesignerList';
 import BookingPage from './pages/BookingPage';
 import ReservationList from './pages/ReservationList';
+import MyPage from './pages/MyPage';
 import './App.css';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Route path="/consulting/:type" element={<DesignerList />} />
         <Route path="/booking/:type/:designerId" element={<BookingPage />} />
         <Route path="/reservations" element={<ReservationList />} />
+        <Route path="/mypage" element={<MyPage/>}/>
       </Routes>
     </Router>
   );

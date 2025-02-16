@@ -34,6 +34,7 @@ function BookingPage() {
   const [showPaymentModal, setShowPaymentModal] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [googleMeetLink, setGoogleMeetLink] = useState(null);
+  const [googleMeetLink, setGoogleMeetLink] = useState(null);
 
   // 디자이너 정보 가져오기
   useEffect(() => {
@@ -404,6 +405,8 @@ function BookingPage() {
           <span>
             {type === "offline" ? "대면 컨설팅" : "화상 컨설팅"}
           </span>
+          <span>컨설팅 유형</span>
+          <span>{type === 'offline' ? '대면 컨설팅' : '화상 컨설팅'}</span>
         </div>
         <div className="info-item">
           <span>날짜</span>
@@ -427,6 +430,8 @@ function BookingPage() {
           <div className="info-item">
             <span>컨설팅 위치</span>
             <span>{designer.address}</span>
+            <span>컨설팅 위치</span>
+            <span>{designer.location}</span>
           </div>
         )}
       </div>
@@ -495,6 +500,9 @@ function BookingPage() {
                 ? "입금 확인 후 예약이 확정됩니다"
                 : "예약이 완료되었습니다!"}
             </h3>
+            <h3>
+              {paymentMethod === 'account' ? '입금 확인 후 예약이 확정됩니다' : '예약이 완료되었습니다!'}
+            </h3>
             <div className="confirm-details">
               <div className="confirm-detail-item">
                 <span>디자이너</span>
@@ -505,11 +513,19 @@ function BookingPage() {
                 <span>
                   {type === "offline" ? "대면 컨설팅" : "화상 컨설팅"}
                 </span>
+                <span>컨설팅 유형</span>
+                <span>{type === 'offline' ? '대면 컨설팅' : '화상 컨설팅'}</span>
               </div>
               {type === "offline" && (
                 <div className="confirm-detail-item">
                   <span>컨설팅 위치</span>
                   <span>{designer.address}</span>
+                </div>
+              )}
+              {type === 'offline' && (
+                <div className="confirm-detail-item">
+                  <span>컨설팅 위치</span>
+                  <span>{designer.location}</span>
                 </div>
               )}
               <div className="confirm-detail-item">
@@ -561,6 +577,40 @@ function BookingPage() {
             <div className="confirm-actions">
               <button
                 className="go-to-reservations"
+                onClick={handleGoToReservations}
+              >
+                예약 내역 확인하기
+              </button>
+              {paymentMethod === 'account' ? (
+                <>
+                  <div className="confirm-detail-item">
+                    <span>입금 계좌</span>
+                    <span>{COMPANY_ACCOUNT.account}</span>
+                  </div>
+                  <div className="confirm-detail-item">
+                    <span>예금주</span>
+                    <span>{COMPANY_ACCOUNT.accountHolder}</span>
+                  </div>
+                </>
+              ) : (
+                type === 'online' && googleMeetLink && (
+                  <div className="confirm-detail-item">
+                    <span>화상 미팅 링크</span>
+                    <a 
+                      href={googleMeetLink} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="google-meet-link"
+                    >
+                      구글 미팅 참여하기
+                    </a>
+                  </div>
+                )
+              )}
+            </div>
+            <div className="confirm-actions">
+              <button 
+                className="go-to-reservations" 
                 onClick={handleGoToReservations}
               >
                 예약 내역 확인하기

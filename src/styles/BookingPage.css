@@ -538,4 +538,37 @@
   .cancel-button:hover {
     background-color: #333333;
   }
+}
+
+.confirm-actions {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.go-to-reservations {
+  padding: 16px 32px;
+  background-color: #000000;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.go-to-reservations:hover {
+  background-color: #000000;
+}
+
+.google-meet-link {
+  color: #4285f4;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.google-meet-link:hover {
+  color: #1a73e8;
+  text-decoration: underline;
 } 
