@@ -248,7 +248,6 @@ export const ButtonB = styled.div`
     color: white;
   }
   border-radius: 5px;
-
 `;
 
 export const Button = styled.div`
@@ -281,4 +280,3 @@ export const LogoutButton = styled.div`
   text-underline-offset: auto;
   text-underline-position: from-font;
 `;
-

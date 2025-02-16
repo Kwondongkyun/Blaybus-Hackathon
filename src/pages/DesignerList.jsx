@@ -26,7 +26,7 @@ function DesignerList() {
   }, []);
 
   const handleDesignerSelect = (designerId) => {
-    navigate(`/booking/${type}/${designerId}`);
+    navigate(`/designer/${type}/${designerId}`);
   };
   const headerText =
     type === "offline"
