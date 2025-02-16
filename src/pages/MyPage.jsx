@@ -40,36 +40,43 @@ const MyPage = () => {
 
   return (
     <M.Container>
-      <HeaderReservation/>
-        <M.Title>
-            <M.BackImage src={Back} alt="Back" />
-            <M.TitleContent>마이페이지</M.TitleContent>
-        </M.Title>
-        <M.Title2>
-            <M.T2T>나만의 스타일 고민</M.T2T>
-            <M.T2C>회원님에게 딱 맞는 컨설턴트를 추천 받을 수 있어요</M.T2C>
-        </M.Title2>
-        <M.LineImage src={Line} alt="Line"/>
-        <M.M>
-            <M.MT>모발 상태</M.MT>
-            <M.MC>{hairStates.map(renderButton)}</M.MC>
-            <M.MC2>
-                <M.ButtonH>해당 없음</M.ButtonH>
-            </M.MC2>
-        </M.M>
-        <M.M>
-            <M.MT>머리 기장</M.MT>
-            <M.MC>{hairLengths.map(renderButton)}</M.MC>
-        </M.M>
-        <M.M>
-            <M.MT>원하는 시술</M.MT>
-            <M.MC>{treatments.map(renderButton)}</M.MC>
-        </M.M>
-        <M.LineImage src={Line} alt="Line"/>
-        <M.LogoutButton onClick={handleLogout}>로그아웃</M.LogoutButton>
-      <Footer/>
+      <HeaderReservation />
+      <M.Title>
+        <M.BackImage
+          src={Back}
+          alt="Back"
+          onClick={() => navigate("/main")}
+        />
+        <M.TitleContent>마이페이지</M.TitleContent>
+      </M.Title>
+      <M.Title2>
+        <M.T2T>나만의 스타일 고민</M.T2T>
+        <M.T2C>
+          회원님에게 딱 맞는 컨설턴트를 추천 받을 수 있어요
+        </M.T2C>
+      </M.Title2>
+      <M.LineImage src={Line} alt="Line" />
+      <M.M>
+        <M.MT>모발 상태</M.MT>
+        <M.MC>{hairStates.map(renderButton)}</M.MC>
+        <M.MC2>
+          <M.ButtonH>해당 없음</M.ButtonH>
+        </M.MC2>
+      </M.M>
+      <M.M>
+        <M.MT>머리 기장</M.MT>
+        <M.MC>{hairLengths.map(renderButton)}</M.MC>
+      </M.M>
+      <M.M>
+        <M.MT>원하는 시술</M.MT>
+        <M.MC>{treatments.map(renderButton)}</M.MC>
+      </M.M>
+      <M.LineImage src={Line} alt="Line" />
+      <M.LogoutButton onClick={handleLogout}>로그아웃</M.LogoutButton>
+      <Footer />
     </M.Container>
   );
-}
+};
+
 
 export default MyPage;
