@@ -1,58 +1,42 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import * as M from "../styles/MyPageStyles";
-import Back from "../assets/back.png";
-import Line from "../assets/line.png";
-import Footer from "../components/Footer.jsx";
-import HeaderReservation from "../components/HeaderReservation.jsx";
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import * as M from '../styles/MyPageStyles';
+import Back from '../assets/back.png';
+import Line from '../assets/line.png';
+import Footer from '../components/Footer.jsx';
+import HeaderReservation from '../components/HeaderReservation.jsx';
 
 const MyPage = () => {
-  const [selectedButtons, setSelectedButtons] = useState([]);
-  const navigate = useNavigate();
+    const [selectedButtons, setSelectedButtons] = useState([]);
+    const navigate = useNavigate(); 
 
-  const handleButtonClick = (label) => {
+
+    const handleButtonClick = (label) => {
     setSelectedButtons((prev) =>
-      prev.includes(label)
-        ? prev.filter((item) => item !== label)
-        : [...prev, label]
-    );
-  };
+        prev.includes(label) ? prev.filter((item) => item !== label) : [...prev, label]
+        );
+    };
 
-  const renderButton = (label) => (
+    const renderButton = (label) => (
     <M.Button
-      key={label}
-      active={selectedButtons.includes(label)}
-      onClick={() => handleButtonClick(label)}
+        key={label}
+        active={selectedButtons.includes(label)}
+        onClick={() => handleButtonClick(label)}
     >
-      {label}
+        {label}
     </M.Button>
-  );
+    );
 
-  const hairStates = ["탈색", "염색", "펌", "매직", "해당 없음"];
-  const hairLengths = [
-    "숏컷",
-    "턱선 위",
-    "턱선 아래",
-    "어깨선 아래",
-    "가슴선 아래",
-  ];
-  const treatments = [
-    "염색",
-    "클리닉",
-    "매직",
-    "펌",
-    "컷트",
-    "드라이",
-    "탈색",
-    "붙임머리",
-  ];
+    const hairStates = ['탈색', '염색', '펌', '매직', '해당 없음'];
+    const hairLengths = ['숏컷', '턱선 위', '턱선 아래', '어깨선 아래', '가슴선 아래'];
+    const treatments = ['염색', '클리닉', '매직', '펌', '컷트', '드라이', '탈색', '붙임머리'];
 
-  const handleLogout = () => {
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("refreshToken");
-    sessionStorage.clear();
-    navigate("/login");
-  };
+    const handleLogout = () => {
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
+        sessionStorage.clear();
+        navigate('/login');
+    };
 
   return (
     <M.Container>
@@ -93,5 +77,6 @@ const MyPage = () => {
     </M.Container>
   );
 };
+
 
 export default MyPage;

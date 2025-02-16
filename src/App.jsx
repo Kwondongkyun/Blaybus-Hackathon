@@ -1,16 +1,14 @@
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-} from "react-router-dom";
-import Login from "./pages/Login";
-import MainPage from "./pages/MainPage";
-import DesignerList from "./pages/DesignerList";
-import BookingPage from "./pages/BookingPage";
-import ReservationList from "./pages/ReservationList";
-import DesignerDetail from "./pages/DesignerDetail";
-import MyPage from "./pages/MyPage";
-import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Login from './pages/Login';
+import MainPage from './pages/MainPage';
+import DesignerList from './pages/DesignerList';
+import BookingPage from './pages/BookingPage';
+import ReservationList from './pages/ReservationList';
+<<<<<<< HEAD
+import MyPage from './pages/MyPage';
+=======
+>>>>>>> e334592 (로그인 기능 추가)
+import './App.css';
 
 function App() {
   return (
@@ -20,16 +18,12 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/main" element={<MainPage />} />
         <Route path="/consulting/:type" element={<DesignerList />} />
-        <Route
-          path="/booking/:type/:designerId"
-          element={<BookingPage />}
-        />
+        <Route path="/booking/:type/:designerId" element={<BookingPage />} />
         <Route path="/reservations" element={<ReservationList />} />
-        <Route
-          path="/designer/:type/:designerId"
-          element={<DesignerDetail />}
-        />
-        <Route path="/mypage" element={<MyPage />} />
+<<<<<<< HEAD
+        <Route path="/mypage" element={<MyPage/>}/>
+=======
+>>>>>>> e334592 (로그인 기능 추가)
       </Routes>
     </Router>
   );
