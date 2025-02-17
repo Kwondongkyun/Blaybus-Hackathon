@@ -1,149 +1,200 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import * as R from "../styles/ReservationListStyles";
-import Back from "../assets/back.png";
-import RectangleGray from "../assets/rectanglegray.png";
-import Footer from "../components/Footer.jsx";
-import HeaderReservation from "../components/HeaderReservation.jsx";
-
-axios.defaults.baseURL = "https://blaybus-glowup.com";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
+import "../styles/ReservationList.css";
 
 const ReservationList = () => {
   const [reservations, setReservations] = useState([]);
-  const [meetingLink, setMeetingLink] = useState("");
+  const [showPopup, setShowPopup] = useState(false);
+  const [selectedReservation, setSelectedReservation] =
+    useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchReservations = async () => {
       try {
-        const tokenResponse = await axios.get("/api/oauth2/token");
-        const authToken = tokenResponse.data;
+        const token = document.cookie
+          .split("; ")
+          .find((row) => row.startsWith("access_token="))
+          ?.split("=")[1]
+          ?.trim(); // 앞뒤 공백 제거
 
-        const response = await axios.get("/reservation", {
-          params: { userId: "user_id" }, // userId를 실제 값으로 교체
-        });
-        setReservations(response.data);
+        if (!token) {
+          alert("로그인이 필요합니다.");
+          navigate("/login");
+          return;
+        }
 
-        const meetingResponse = await axios.post(
-          "/api/google-calendar/create-event-with-meeting",
-          {
-            reservationId: "reservation_id",
-            userId: "user_id",
-            summary: "미용실 컨설팅 예약",
-            startTime: "2025-06-06T10:00:00+09:00",
-            endTime: "2025-06-06T11:00:00+09:00",
+        console.log("Token from cookie: ", token);
+        const arr = {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
           },
-          { headers: { Authorization: "google_oauth_token" } }
+          credentials: "include",
+        };
+        console.log(arr);
+        const response = await fetch(
+          "https://blaybus-glowup.com/reservation/user",
+          {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+            credentials: "include",
+          }
         );
 
-        setMeetingLink(
-          meetingResponse.data.meetingLink || "링크 생성 실패"
-        );
+        if (!response.ok) {
+          console.log("Response status:", response.status); // 상태 코드 출력
+          const errorMessage = await response.text(); // 응답 본문 출력
+          console.log("Error message:", errorMessage);
+          throw new Error("예약 목록 조회에 실패했습니다.");
+        }
+
+        const data = await response.json();
+        console.log(response);
+        console.log(data);
+        setReservations(data);
       } catch (error) {
-        console.error("데이터 불러오기 실패:", error);
+        console.error("예약 목록 조회 실패:", error);
       }
     };
 
     fetchReservations();
-  }, []);
+  }, [navigate]);
 
+  // 예약 취소
   const handleRCancelClick = async () => {
+    if (!selectedReservation) return;
+
     try {
-      await axios.delete("/reservation", {
-        params: { userId: "user_id" }, // 실제 userId 예약 ID 필요
-      });
+      const response = await fetch(
+        "https://blaybus-glowup.com/reservation",
+        {
+          method: "DELETE",
+          headers: {
+            reservationId: selectedReservation.id,
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("예약 취소에 실패했습니다.");
+      }
+
       alert("예약이 취소되었습니다.");
       setShowPopup(false);
+      setReservations((prev) =>
+        prev.filter((r) => r.id !== selectedReservation.id)
+      );
     } catch (error) {
       console.error("예약 취소 실패:", error);
       alert("예약 취소에 실패했습니다.");
     }
   };
 
-  const [showPopup, setShowPopup] = useState(false);
+  const handleCancelClick = (reservation) => {
+    setSelectedReservation(reservation);
+    setShowPopup(true);
+  };
 
-  const handleCancelClick = () => setShowPopup(true);
-  const handleClosePopup = () => setShowPopup(false);
+  const handleClosePopup = () => {
+    setShowPopup(false);
+    setSelectedReservation(null);
+  };
 
   return (
-    <R.Container>
-      <HeaderReservation />
-      <R.Title>
-        <R.BackImage
-          src={Back}
-          alt="Back"
-          onClick={() => navigate("/main")}
-        />
-        <R.TitleContent>예약 내역 조회</R.TitleContent>
-      </R.Title>
-      <R.Title2>예약 내역</R.Title2>
-      <R.Consulting>
-        <R.CT>
-          비대면 컨설팅은 <br /> 하단 구글 미트에서 진행됩니다
-        </R.CT>
-        <R.CLink
-          href={meetingLink}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {meetingLink || "링크 생성 중..."}
-        </R.CLink>
-      </R.Consulting>
-      <R.ConsultingContent>
-        <R.D>
-          <R.De>디자이너</R.De>
-          <R.Des>아초 디자이너</R.Des>
-          {/* <R.Des>{res.designer}</R.Des> */}
-        </R.D>
-        <R.C>
-          <R.Co>컨설팅 유형</R.Co>
-          <R.Con>비대면 컨설팅</R.Con>
-          {/* <R.Con>{res.type}</R.Con> */}
-        </R.C>
-        <R.D2>
-          <R.Da>날짜</R.Da>
-          <R.Dat>2025.06.06</R.Dat>
-          {/* <R.Dat>{res.date}</R.Dat> */}
-        </R.D2>
-        <R.T>
-          <R.Ti>시간</R.Ti>
-          <R.Tim>10:00</R.Tim>
-          {/* <R.Tim>{res.time}</R.Tim> */}
-        </R.T>
-        <R.P>
-          <R.Pr>가격</R.Pr>
-          <R.Pri>40,000원</R.Pri>
-          {/* <R.Pri>{res.price}</R.Pri> */}
-        </R.P>
-      </R.ConsultingContent>
-      <R.Button onClick={handleCancelClick}>예약 취소</R.Button>
+    <div className="reservation-container">
+      <Header text="예약 내역 조회" />
+
+      {reservations.length === 0 ? (
+        <div className="no-reservations">
+          <p>예약 내역이 없습니다.</p>
+        </div>
+      ) : (
+        <div className="reservation-wrapper">
+          {reservations.map((reservation) => (
+            <div key={reservation.id} className="reservation-card">
+              <div className="reservation-info">
+                <div className="info-row">
+                  <span>디자이너</span>
+                  <span>{reservation.designerName}</span>
+                </div>
+                <div className="info-row">
+                  <span>컨설팅 유형</span>
+                  <span>
+                    {reservation.meet
+                      ? "비대면 컨설팅"
+                      : "대면 컨설팅"}
+                  </span>
+                </div>
+                <div className="info-row">
+                  <span>날짜</span>
+                  <span>{reservation.date}</span>
+                </div>
+                <div className="info-row">
+                  <span>시간</span>
+                  <span>{`${reservation.start.hour}:${String(
+                    reservation.start.minute
+                  ).padStart(2, "0")}`}</span>
+                </div>
+                <div className="info-row">
+                  <span>가격</span>
+                  <span>{`${Number(
+                    reservation.price
+                  ).toLocaleString()}원`}</span>
+                </div>
+                {!reservation.meet ? (
+                  <div className="info-row">
+                    <span>컨설팅 위치</span>
+                    <span>{reservation.shop}</span>
+                  </div>
+                ) : (
+                  <div className="info-row">
+                    <span>미팅 링크</span>
+                    <a
+                      href={reservation.meetLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="meet-link"
+                    >
+                      구글 미팅 참여하기
+                    </a>
+                  </div>
+                )}
+              </div>
+              <button
+                className="cancel-button"
+                onClick={() => handleCancelClick(reservation)}
+              >
+                예약 취소
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
 
       {showPopup && (
-        <R.PopupOverlay onClick={handleClosePopup}>
-          <R.Popup>
-            <R.RectangleGrayImage
-              src={RectangleGray}
-              alt="RectangleGray"
-            />
-            <R.PopupTitle>정말 취소하시겠습니까?</R.PopupTitle>
-            <R.PopupText>
-              선택하신 날짜와 시간은 취소되고, <br /> 메인 화면으로
-              돌아갑니다.
-            </R.PopupText>
-            <R.PopupButtonGroup>
-              <R.PopupButton primary onClick={handleRCancelClick}>
-                예약 취소
-              </R.PopupButton>
-              <R.PopupButton onClick={handleClosePopup}>
-                돌아가기
-              </R.PopupButton>
-            </R.PopupButtonGroup>
-          </R.Popup>
-        </R.PopupOverlay>
+        <div className="popup-overlay">
+          <div className="popup">
+            <h3>정말 취소하시겠습니까?</h3>
+            <p>
+              선택하신 날짜와 시간은 취소되고, <br />
+              메인 화면으로 돌아갑니다.
+            </p>
+            <div className="popup-buttons">
+              <button onClick={handleRCancelClick}>예약 취소</button>
+              <button onClick={handleClosePopup}>돌아가기</button>
+            </div>
+          </div>
+        </div>
       )}
       <Footer />
-    </R.Container>
+    </div>
   );
 };
 
