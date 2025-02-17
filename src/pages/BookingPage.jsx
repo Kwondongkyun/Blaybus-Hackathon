@@ -8,12 +8,19 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { ko } from "date-fns/locale";
 import "../styles/BookingPage.css";
+import Header from "../components/Header";
 
 // 공통 계좌 정보
 const COMPANY_ACCOUNT = {
   account: "신한은행 110-123-456789",
   accountHolder: "Bliss(김아정)",
 };
+
+const accesstoken = document.cookie
+  .split("; ")
+  .find((row) => row.startsWith("access_token="))
+  ?.split("=")[1]
+  ?.trim(); // 앞뒤 공백 제거
 
 function BookingPage() {
   const navigate = useNavigate();
@@ -76,6 +83,193 @@ function BookingPage() {
   const maxDate = new Date();
   maxDate.setMonth(maxDate.getMonth() + 3);
 
+  // 카카오페이 결제 준비
+  const handleKakaoPayment = async (reservationId) => {
+    try {
+      const response = await fetch(
+        "https://blaybus-glowup.com/payment/kakao/ready",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${accesstoken}`,
+          },
+          body: JSON.stringify({
+            reservationId: reservationId,
+            amount:
+              type === "offline"
+                ? designer.price.offline
+                : designer.price.online,
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("카카오페이 결제 준비에 실패했습니다");
+      }
+
+      const paymentData = await response.json();
+      window.location.href = paymentData.next_redirect_pc_url;
+    } catch (error) {
+      console.error("카카오페이 결제 처리 중 오류:", error);
+      alert("카카오페이 결제 처리 중 오류가 발생했습니다");
+    }
+  };
+
+  // 카카오페이 결제 승인
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const pgToken = urlParams.get("pg_token");
+
+    if (pgToken) {
+      const approveKakaoPayment = async () => {
+        try {
+          const response = await fetch(
+            "https://blaybus-glowup.com/payment/kakao/success",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${accesstoken}`,
+              },
+              body: JSON.stringify({
+                pgToken,
+                reservationId: reservationId,
+              }),
+            }
+          );
+
+          if (!response.ok) {
+            throw new Error("결제 승인에 실패했습니다.");
+          }
+
+          const data = await response.json();
+          alert("결제가 완료되었습니다!");
+          setShowConfirmModal(true);
+        } catch (error) {
+          console.error("결제 승인 중 오류 발생:", error);
+          alert("결제 승인 중 오류가 발생했습니다.");
+        }
+      };
+
+      approveKakaoPayment();
+    }
+  }, []);
+
+  // 카카오페이 결제 실패
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const paymentFailed = urlParams.get("fail");
+
+    if (paymentFailed) {
+      const handlePaymentFailure = async () => {
+        try {
+          const response = await fetch(
+            "https://blaybus-glowup.com/payment/kakao/fail",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${accesstoken}`,
+              },
+              body: JSON.stringify({
+                reservationId: reservationId,
+              }),
+            }
+          );
+
+          if (!response.ok) {
+            throw new Error("결제 실패 처리 중 오류가 발생했습니다.");
+          }
+
+          alert("결제가 실패했습니다. 다시 시도해주세요.");
+        } catch (error) {
+          console.error("결제 실패 처리 중 오류 발생:", error);
+          alert("결제 실패 처리 중 오류가 발생했습니다.");
+        }
+      };
+
+      handlePaymentFailure();
+    }
+  }, []);
+
+  // 카카오페이 결제 취소
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const paymentCancelled = urlParams.get("cancel");
+
+    if (paymentCancelled) {
+      const handlePaymentCancellation = async () => {
+        try {
+          const response = await fetch(
+            "https://blaybus-glowup.com/payment/kakao/cancel",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${accesstoken}`,
+              },
+              body: JSON.stringify({
+                reservationId: reservationId,
+              }),
+            }
+          );
+
+          if (!response.ok) {
+            throw new Error("결제 취소 처리 중 오류가 발생했습니다.");
+          }
+
+          alert("결제가 취소되었습니다.");
+        } catch (error) {
+          console.error("결제 취소 처리 중 오류 발생:", error);
+          alert("결제 취소 처리 중 오류가 발생했습니다.");
+        }
+      };
+
+      handlePaymentCancellation();
+    }
+  }, []);
+
+  // Google Meet 링크 생성 함수 수정
+  const createGoogleMeetEvent = async (reservationId) => {
+    try {
+      const token = accesstoken;
+      const response = await fetch(
+        "https://blaybus-glowup.com/api/google-calendar/create-event-with-meeting",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            reservationId: reservationId,
+            summary: `컨설팅 예약 - ${designer.name}`,
+            description: `화상 컨설팅\n디자이너: ${designer.name}`,
+            startTime: `${
+              selectedDateState.toISOString().split("T")[0]
+            }T${selectedTimeState}:00`,
+            endTime: `${
+              selectedDateState.toISOString().split("T")[0]
+            }T${parseInt(selectedTimeState.split(":")[0]) + 1}:${
+              selectedTimeState.split(":")[1]
+            }:00`,
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Google Meet 링크 생성에 실패했습니다.");
+      }
+
+      const data = await response.json();
+      return data.meetLink;
+    } catch (error) {
+      console.error("Google Meet 링크 생성 중 오류:", error);
+      return null;
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!selectedDateState || !selectedTimeState) {
@@ -85,56 +279,102 @@ function BookingPage() {
     setShowConfirmation(true);
   };
 
-  const handleConfirm = () => {
+  const handleConfirm = async () => {
     if (!paymentMethod) {
       alert("결제 방식을 선택해주세요.");
       return;
     }
 
-    // 화상 컨설팅일 경우 구글미트 링크 생성
-    const meetLink =
-      type === "online"
-        ? `https://meet.google.com/haertz-${Date.now()}`
-        : null;
-    setGoogleMeetLink(meetLink);
+    const token = accesstoken;
+    if (!token) {
+      alert("로그인이 필요합니다.");
+      navigate("/login");
+      return;
+    }
 
-    // 예약 정보 생성
-    const newReservation = {
-      id: Date.now(),
-      designerId,
-      designerName: designer.name,
-      type,
-      date: selectedDateState.toISOString().split("T")[0],
-      time: selectedTimeState,
-      price:
-        type === "offline"
-          ? designer.price.offline
-          : designer.price.online,
-      paymentMethod,
-      status: paymentMethod === "account" ? "pending" : "confirmed",
-      location: type === "offline" ? designer.address : "화상 컨설팅",
-      account: COMPANY_ACCOUNT.account,
-      accountHolder: COMPANY_ACCOUNT.accountHolder,
-      googleMeetLink: meetLink,
-    };
+    try {
+      // 1. 예약 생성
+      const reservationData = {
+        designerId: designerId,
+        meet: type === "online",
+        date: selectedDateState.toISOString().split("T")[0],
+        start: {
+          hour: parseInt(selectedTimeState.split(":")[0]),
+          minute: parseInt(selectedTimeState.split(":")[1]),
+          second: 0,
+          nano: 0,
+        },
+        end: {
+          hour: parseInt(selectedTimeState.split(":")[0]) + 1,
+          minute: parseInt(selectedTimeState.split(":")[1]),
+          second: 0,
+          nano: 0,
+        },
+        shop: designer.address,
+        price:
+          type === "offline"
+            ? designer.price.offline.toString()
+            : designer.price.online.toString(),
+      };
+      console.log(reservationData);
 
-    // 로컬 스토리지에 저장
-    const existingReservations = JSON.parse(
-      localStorage.getItem("reservations") || "[]"
-    );
-    localStorage.setItem(
-      "reservations",
-      JSON.stringify([...existingReservations, newReservation])
-    );
+      const response = await fetch(
+        "https://blaybus-glowup.com/reservation/create",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(reservationData),
+        }
+      );
 
-    // 결제 모달 닫고 확인 모달 표시
-    setShowPaymentModal(false);
-    setShowConfirmModal(true);
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(
+          errorData.message || "예약 생성에 실패했습니다."
+        );
+      }
+
+      const data = await response.json();
+      console.log("예약 생성 성공:", data);
+
+      // 2. 온라인 컨설팅인 경우 구글 미팅 생성
+      if (type === "online") {
+        const meetLink = await createGoogleMeetEvent(
+          data.reservationId
+        );
+        if (meetLink) {
+          setGoogleMeetLink(meetLink);
+        }
+      }
+
+      // 3. 결제 방식에 따른 처리
+      if (paymentMethod === "kakaopay") {
+        handleKakaoPayment(data.reservationId);
+      } else {
+        setShowPaymentModal(false);
+        setShowConfirmModal(true);
+      }
+    } catch (error) {
+      console.error("예약 생성 중 오류:", error);
+      alert(error.message || "예약 생성 중 오류가 발생했습니다.");
+    }
   };
 
   // 예약 내역 페이지로 이동하는 함수 추가
-  const handleGoToReservations = () => {
-    navigate("/reservations");
+  const handleGoToReservations = async () => {
+    try {
+      const response = await fetch(
+        "https://blaybus-glowup.com/reservation"
+      );
+      const data = await response.json();
+      // 예약 내역 페이지로 이동하면서 데이터를 전달
+      navigate("/reservations", { state: { reservations: data } });
+    } catch (error) {
+      console.error("예약 내역을 가져오는 데 실패했습니다.", error);
+    }
   };
 
   const handlePaymentSelect = (method) => {
@@ -145,11 +385,20 @@ function BookingPage() {
     setShowPaymentModal(true);
   };
 
+  // 토큰 확인 로직 추가 필요
+  useEffect(() => {
+    const token = accesstoken;
+    if (!token) {
+      navigate("/login");
+      return;
+    }
+  }, []);
+
   if (!designer) return <div>로딩중...</div>;
 
   return (
     <div className="booking-confirmation-container">
-      <h2>예약 확인</h2>
+      <Header text="예약 확인" />
 
       <div className="booking-info">
         <div className="info-item">
@@ -206,7 +455,8 @@ function BookingPage() {
                 }`}
                 onClick={() => handlePaymentSelect("account")}
               >
-                계좌이체
+                <div className="radio-circle" />
+                <span>계좌이체</span>
               </button>
               <button
                 className={`payment-button ${
@@ -214,7 +464,8 @@ function BookingPage() {
                 }`}
                 onClick={() => handlePaymentSelect("kakaopay")}
               >
-                카카오페이
+                <div className="radio-circle" />
+                <span>카카오페이</span>
               </button>
             </div>
 
@@ -227,16 +478,18 @@ function BookingPage() {
 
             <div className="payment-actions">
               <button
-                className="cancel-button"
-                onClick={() => setShowPaymentModal(false)}
-              >
-                이전으로
-              </button>
-              <button
-                className="confirm-button"
+                className={`confirm-button ${
+                  paymentMethod ? "active" : ""
+                }`}
                 onClick={handleConfirm}
               >
                 결제하기
+              </button>
+              <button
+                className="cancel-button"
+                onClick={() => setShowPaymentModal(false)}
+              >
+                돌아가기
               </button>
             </div>
           </div>
