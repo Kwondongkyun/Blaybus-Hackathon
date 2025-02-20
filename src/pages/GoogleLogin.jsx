@@ -1,5 +1,5 @@
 import "../styles/GoogleLogin.css";
-import googleImg from '../assets/google-logo.png';
+import googleImg from "../assets/google-logo.svg";
 
 function GoogleLogin() {
   const handleLogin = () => {
@@ -21,4 +21,4 @@ function GoogleLogin() {
   );
 }
 
-export default GoogleLogin;
+export default GoogleLogin; 

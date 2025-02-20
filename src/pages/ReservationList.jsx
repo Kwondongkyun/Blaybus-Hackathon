@@ -69,16 +69,28 @@ const ReservationList = () => {
 
   // 예약 취소
   const handleRCancelClick = async () => {
+    console.log(selectedReservation.id);
+
     if (!selectedReservation) return;
 
     try {
+      const token = document.cookie
+        .split("; ")
+        .find((row) => row.startsWith("access_token="))
+        ?.split("=")[1]
+        ?.trim(); // 앞뒤 공백 제거
+
+      if (!token) {
+        alert("로그인이 필요합니다.");
+        navigate("/login");
+        return;
+      }
+
       const response = await fetch(
-        "https://blaybus-glowup.com/reservation",
+        `https://blaybus-glowup.com/reservation?reservationId=${selectedReservation.id}`,
         {
           method: "DELETE",
-          headers: {
-            reservationId: selectedReservation.id,
-          },
+          credentials: "include",
         }
       );
 
@@ -122,7 +134,7 @@ const ReservationList = () => {
               <div className="reservation-info">
                 <div className="info-row">
                   <span>디자이너</span>
-                  <span>{reservation.designerName}</span>
+                  <span>{reservation.designerId}</span>
                 </div>
                 <div className="info-row">
                   <span>컨설팅 유형</span>
@@ -138,9 +150,10 @@ const ReservationList = () => {
                 </div>
                 <div className="info-row">
                   <span>시간</span>
-                  <span>{`${reservation.start.hour}:${String(
-                    reservation.start.minute
-                  ).padStart(2, "0")}`}</span>
+                  <span>{`${reservation.start.slice(
+                    0,
+                    5
+                  )} ~ ${reservation.end.slice(0, 5)}`}</span>
                 </div>
                 <div className="info-row">
                   <span>가격</span>
@@ -157,7 +170,7 @@ const ReservationList = () => {
                   <div className="info-row">
                     <span>미팅 링크</span>
                     <a
-                      href={reservation.meetLink}
+                      href={reservation.googleMeetUri}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="meet-link"

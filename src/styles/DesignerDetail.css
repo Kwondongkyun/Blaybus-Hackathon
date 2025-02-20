@@ -5,6 +5,7 @@
   max-width: 600px;
   margin: 0 auto;
   min-height: 100vh;
+  background: #ffffff;
 }
 
 .designer-detail-container .header {
@@ -49,13 +50,12 @@
   width: 150px;
 }
 
-/* 디자이너 특기 */
+/* 디자이너 특기 기본 스타일 */
 .designer-info .specialty {
   margin-bottom: 4px;
   width: 34px;
   padding-top: 1px;
   padding-bottom: 1px;
-  background-color: #888ef1;
   color: #ffffff;
   border-radius: 48px;
   border: none;
@@ -63,9 +63,24 @@
   font-size: 10px;
 }
 
+/* 펌 태그 - 기존 색상 유지 */
+.designer-info .specialty[data-field="펌"] {
+  background-color: #888ef1;
+}
+
+/* 탈염색 태그 */
+.designer-info .specialty[data-field="탈염색"] {
+  background-color: #bf87dc;
+}
+
+/* 염색 태그 */
+.designer-info .specialty[data-field="염색"] {
+  background-color: #dd7592;
+}
+
 /* 디자이너 이름 */
 .designer-info h1 {
-  font-size: 24px;
+  font-size: 20px;
   color: #333;
   margin-bottom: 8px;
   text-align: left;
@@ -83,6 +98,7 @@
   margin-right: 5px;
 }
 
+/* 여백 */
 .blank {
   width: 50px;
 }
@@ -131,9 +147,13 @@
 }
 
 .designer-introduction p {
-  color: #666;
+  color: #090a0a;
   line-height: 1.6;
-  margin-bottom: 12px;
+  text-align: center;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 27px;
 }
 
 .designer-introduction .description {
@@ -146,6 +166,7 @@
   padding: 24px;
   margin-bottom: 24px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  height: 450px;
 }
 
 .designer-detail-portfolio h2 {
@@ -154,9 +175,19 @@
   margin-bottom: 16px;
 }
 
+.designer-detail-portfolio .portfolio-list {
+  width: 300px;
+  height: 120px;
+}
+
 .portfolio-item {
   padding: 16px 0;
   border-bottom: 1px solid #eee;
+}
+
+.portfolio-item .portfolio-video {
+  width: 348px;
+  height: 348px;
 }
 
 .portfolio-item:last-child {
@@ -166,7 +197,7 @@
 .designer-detail-container .booking-button {
   width: 95%;
   padding: 16px;
-  background-color: #e4788b;
+  background-color: #090a0a;
   color: white;
   border: none;
   border-radius: 48px;
@@ -217,10 +248,13 @@
   padding: 24px;
   border-radius: 20px 20px 0 0;
   width: 100%;
-  max-height: 90vh;
+  height: auto;
   overflow-y: auto;
   position: relative;
   animation: slideUp 0.3s ease-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .close-button {
@@ -359,18 +393,31 @@
 .proceed-booking-button {
   width: 100%;
   padding: 16px;
-  margin-top: 24px;
-  background-color: #000000;
+  background-color: #979c9e; /* 기본 색상 */
   color: white;
   border: none;
-  border-radius: 8px;
-  font-size: 16px;
+  border-radius: 48px;
+  font-size: 18px;
+  font-weight: 1000;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: background-color 0.2s;
+  margin-top: 24px;
 }
 
-.proceed-booking-button:hover {
-  background-color: #ff5252;
+.proceed-booking-button.active {
+  background-color: #090a0a; /* 활성화됐을 때 색상 */
+}
+
+.proceed-booking-button:disabled {
+  cursor: not-allowed;
+}
+
+.selected-datetime {
+  display: block;
+  text-align: center;
+  font-size: 14px;
+  margin-top: 8px;
+  color: #666;
 }
 
 /* DatePicker 선택된 날짜 스타일 */
