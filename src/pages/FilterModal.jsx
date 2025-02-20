@@ -9,6 +9,21 @@ const FilterModal = ({ isOpen, onClose, onApply }) => {
     maxPrice: 100000,
   });
 
+  // 모든 필터 조건을 한번에 업데이트하는 함수
+  const handleFilterChange = (updates) => {
+    setFilter((prevFilter) => ({
+      ...prevFilter,
+      ...updates,
+    }));
+  };
+
+  // 적용하기 버튼 클릭 핸들러 수정
+  const handleApply = () => {
+    console.log("Applying filter:", filter); // 디버깅
+    onApply(filter); // 부모 컴포넌트로 필터 전달
+    onClose(); // 모달 닫기
+  };
+
   if (!isOpen) return null;
 
   return (
@@ -21,12 +36,12 @@ const FilterModal = ({ isOpen, onClose, onApply }) => {
             "서울 전체",
             "성수/건대",
             "강남/청담/압구정",
-            "홍대/합정/연남",
+            "홍대/연남/합정", // 지역 형태 수정
           ].map((region) => (
             <button
               key={region}
               className={filter.region === region ? "active" : ""}
-              onClick={() => setFilter({ ...filter, region })}
+              onClick={() => handleFilterChange({ region })}
             >
               {region}
             </button>
@@ -40,10 +55,12 @@ const FilterModal = ({ isOpen, onClose, onApply }) => {
             <input
               type="number"
               value={filter.minPrice}
-              onChange={(e) => 
-                setFilter({
-                  ...filter,
-                  minPrice: Math.min(parseInt(e.target.value) || 0, filter.maxPrice)
+              onChange={(e) =>
+                handleFilterChange({
+                  minPrice: Math.min(
+                    parseInt(e.target.value) || 0,
+                    filter.maxPrice
+                  ),
                 })
               }
               placeholder="최소 가격"
@@ -52,10 +69,12 @@ const FilterModal = ({ isOpen, onClose, onApply }) => {
             <input
               type="number"
               value={filter.maxPrice}
-              onChange={(e) => 
-                setFilter({
-                  ...filter,
-                  maxPrice: Math.max(parseInt(e.target.value) || 0, filter.minPrice)
+              onChange={(e) =>
+                handleFilterChange({
+                  maxPrice: Math.max(
+                    parseInt(e.target.value) || 0,
+                    filter.minPrice
+                  ),
                 })
               }
               placeholder="최대 가격"
@@ -69,9 +88,11 @@ const FilterModal = ({ isOpen, onClose, onApply }) => {
               step="1000"
               value={filter.minPrice}
               onChange={(e) =>
-                setFilter({
-                  ...filter,
-                  minPrice: Math.min(parseInt(e.target.value), filter.maxPrice)
+                handleFilterChange({
+                  minPrice: Math.min(
+                    parseInt(e.target.value),
+                    filter.maxPrice
+                  ),
                 })
               }
             />
@@ -82,24 +103,26 @@ const FilterModal = ({ isOpen, onClose, onApply }) => {
               step="1000"
               value={filter.maxPrice}
               onChange={(e) =>
-                setFilter({
-                  ...filter,
-                  maxPrice: Math.max(parseInt(e.target.value), filter.minPrice)
+                handleFilterChange({
+                  maxPrice: Math.max(
+                    parseInt(e.target.value),
+                    filter.minPrice
+                  ),
                 })
               }
             />
           </div>
         </div>
 
-        {/* 적용 버튼 */}
-        <button className="apply-btn" onClick={() => {
-          onApply(filter);
-          onClose();
-        }}>
+        {/* 적용하기 버튼 수정 */}
+        <button
+          className="apply-btn"
+          onClick={handleApply} // handleApply 함수 연결
+        >
           적용하기
         </button>
 
-        {/* 닫기 버튼 */}
+        {/* 닫기 버튼2 */}
         <button className="close-btn" onClick={onClose}>
           닫기
         </button>
