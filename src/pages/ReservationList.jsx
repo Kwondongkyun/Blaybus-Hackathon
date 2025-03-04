@@ -26,7 +26,6 @@ const ReservationList = () => {
           return;
         }
 
-        console.log("Token from cookie: ", token);
         const arr = {
           method: "GET",
           headers: {
@@ -35,7 +34,6 @@ const ReservationList = () => {
           },
           credentials: "include",
         };
-        console.log(arr);
         const response = await fetch(
           "https://blaybus-glowup.com/reservation/user",
           {
@@ -56,8 +54,6 @@ const ReservationList = () => {
         }
 
         const data = await response.json();
-        console.log(response);
-        console.log(data);
         setReservations(data);
       } catch (error) {
         console.error("예약 목록 조회 실패:", error);
@@ -69,8 +65,6 @@ const ReservationList = () => {
 
   // 예약 취소
   const handleRCancelClick = async () => {
-    console.log(selectedReservation.id);
-
     if (!selectedReservation) return;
 
     try {
@@ -130,7 +124,10 @@ const ReservationList = () => {
       ) : (
         <div className="reservation-wrapper">
           {reservations.map((reservation) => (
-            <div key={reservation.id} className="reservation-card">
+            <div
+              key={reservation.id}
+              className="reservation-card"
+            >
               <div className="reservation-info">
                 <div className="info-row">
                   <span>디자이너</span>
@@ -153,7 +150,10 @@ const ReservationList = () => {
                   <span>{`${reservation.start.slice(
                     0,
                     5
-                  )} ~ ${reservation.end.slice(0, 5)}`}</span>
+                  )} ~ ${reservation.end.slice(
+                    0,
+                    5
+                  )}`}</span>
                 </div>
                 <div className="info-row">
                   <span>가격</span>
@@ -182,7 +182,9 @@ const ReservationList = () => {
               </div>
               <button
                 className="cancel-button"
-                onClick={() => handleCancelClick(reservation)}
+                onClick={() =>
+                  handleCancelClick(reservation)
+                }
               >
                 예약 취소
               </button>
@@ -200,8 +202,12 @@ const ReservationList = () => {
               메인 화면으로 돌아갑니다.
             </p>
             <div className="popup-buttons">
-              <button onClick={handleRCancelClick}>예약 취소</button>
-              <button onClick={handleClosePopup}>돌아가기</button>
+              <button onClick={handleRCancelClick}>
+                예약 취소
+              </button>
+              <button onClick={handleClosePopup}>
+                돌아가기
+              </button>
             </div>
           </div>
         </div>

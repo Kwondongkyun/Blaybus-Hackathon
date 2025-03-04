@@ -36,17 +36,22 @@ function BookingPage() {
   const queryParams = new URLSearchParams(location.search);
   const selectedDate = new Date(queryParams.get("date"));
   const selectedTime = queryParams.get("time");
-  const [selectedDateState, setSelectedDate] = useState(selectedDate);
-  const [selectedTimeState, setSelectedTime] = useState(selectedTime);
+  const [selectedDateState, setSelectedDate] =
+    useState(selectedDate);
+  const [selectedTimeState, setSelectedTime] =
+    useState(selectedTime);
   const [timeSlots, setTimeSlots] = useState({
     morning: [],
     afternoon: [],
   });
   const [designer, setDesigner] = useState(null);
-  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [showConfirmation, setShowConfirmation] =
+    useState(false);
   const [paymentMethod, setPaymentMethod] = useState("");
-  const [showPaymentModal, setShowPaymentModal] = useState(false);
-  const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [showPaymentModal, setShowPaymentModal] =
+    useState(false);
+  const [showConfirmModal, setShowConfirmModal] =
+    useState(false);
   const [googleMeetLink, setGoogleMeetLink] = useState(null);
 
   // 디자이너 정보 가져오기
@@ -57,7 +62,9 @@ function BookingPage() {
           "https://blaybus-glowup.com/designers"
         );
         const data = await response.json();
-        const designerData = data.find((d) => d.id === designerId);
+        const designerData = data.find(
+          (d) => d.id === designerId
+        );
         setDesigner(designerData);
       } catch (error) {
         console.error("Error fetching designer:", error);
@@ -73,8 +80,12 @@ function BookingPage() {
     const afternoon = [];
 
     for (let hour = 10; hour < 20; hour++) {
-      const timeSlot1 = `${hour.toString().padStart(2, "0")}:00`;
-      const timeSlot2 = `${hour.toString().padStart(2, "0")}:30`;
+      const timeSlot1 = `${hour
+        .toString()
+        .padStart(2, "0")}:00`;
+      const timeSlot2 = `${hour
+        .toString()
+        .padStart(2, "0")}:30`;
 
       if (hour < 12) {
         morning.push(timeSlot1, timeSlot2);
@@ -92,7 +103,6 @@ function BookingPage() {
 
   // 카카오페이 결제 준비
   const handleKakaoPayment = async (data) => {
-    console.log(data);
     try {
       const response = await fetch(
         "https://blaybus-glowup.com/payment/kakao/ready",
@@ -111,18 +121,23 @@ function BookingPage() {
             taxFreeAmount: "0", // 면세 금액 (여기서는 0으로 설정)
             approvalUrl:
               "https://uhyeon.blaybus-glowup.com/Kakaopayment", // 결제 성공 시 리디렉션 URL
-            failUrl: "https://blaybus-glowup.com/payment/fail", // 결제 실패 시 리디렉션 URL
-            cancelUrl: "https://blaybus-glowup.com/payment/cancel", // 결제 취소 시 리디렉션 URL
+            failUrl:
+              "https://blaybus-glowup.com/payment/fail", // 결제 실패 시 리디렉션 URL
+            cancelUrl:
+              "https://blaybus-glowup.com/payment/cancel", // 결제 취소 시 리디렉션 URL
           }),
         }
       );
 
       if (!response.ok) {
-        throw new Error("카카오페이 결제 준비에 실패했습니다");
+        throw new Error(
+          "카카오페이 결제 준비에 실패했습니다"
+        );
       }
 
       const paymentData = await response.json();
-      window.location.href = paymentData.next_redirect_pc_url;
+      window.location.href =
+        paymentData.next_redirect_pc_url;
     } catch (error) {
       console.error("카카오페이 결제 처리 중 오류:", error);
       alert("카카오페이 결제 처리 중 오류가 발생했습니다");
@@ -131,7 +146,9 @@ function BookingPage() {
 
   // 카카오페이 결제 승인
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
+    const urlParams = new URLSearchParams(
+      window.location.search
+    );
     const pgToken = urlParams.get("pg_token");
 
     if (pgToken) {
@@ -177,7 +194,9 @@ function BookingPage() {
 
   // 카카오페이 결제 실패
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
+    const urlParams = new URLSearchParams(
+      window.location.search
+    );
     const paymentFailed = urlParams.get("fail");
 
     if (paymentFailed) {
@@ -198,12 +217,17 @@ function BookingPage() {
           );
 
           if (!response.ok) {
-            throw new Error("결제 실패 처리 중 오류가 발생했습니다.");
+            throw new Error(
+              "결제 실패 처리 중 오류가 발생했습니다."
+            );
           }
 
           alert("결제가 실패했습니다. 다시 시도해주세요.");
         } catch (error) {
-          console.error("결제 실패 처리 중 오류 발생:", error);
+          console.error(
+            "결제 실패 처리 중 오류 발생:",
+            error
+          );
           alert("결제 실패 처리 중 오류가 발생했습니다.");
         }
       };
@@ -214,7 +238,9 @@ function BookingPage() {
 
   // 카카오페이 결제 취소
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
+    const urlParams = new URLSearchParams(
+      window.location.search
+    );
     const paymentCancelled = urlParams.get("cancel");
 
     if (paymentCancelled) {
@@ -235,12 +261,17 @@ function BookingPage() {
           );
 
           if (!response.ok) {
-            throw new Error("결제 취소 처리 중 오류가 발생했습니다.");
+            throw new Error(
+              "결제 취소 처리 중 오류가 발생했습니다."
+            );
           }
 
           alert("결제가 취소되었습니다.");
         } catch (error) {
-          console.error("결제 취소 처리 중 오류 발생:", error);
+          console.error(
+            "결제 취소 처리 중 오류 발생:",
+            error
+          );
           alert("결제 취소 처리 중 오류가 발생했습니다.");
         }
       };
@@ -252,7 +283,6 @@ function BookingPage() {
   // Google Meet 링크 생성 함수 수정
   const createGoogleMeetEvent = async (data) => {
     try {
-      console.log(data);
       const token = google_oauth_token;
       const response = await fetch(
         "https://blaybus-glowup.com/api/google-calendar/create-event-with-meeting",
@@ -271,15 +301,17 @@ function BookingPage() {
             }T${selectedTimeState}:00`,
             endTime: `${
               selectedDateState.toISOString().split("T")[0]
-            }T${parseInt(selectedTimeState.split(":")[0]) + 1}:${
-              selectedTimeState.split(":")[1]
-            }:00`,
+            }T${
+              parseInt(selectedTimeState.split(":")[0]) + 1
+            }:${selectedTimeState.split(":")[1]}:00`,
           }),
         }
       );
 
       if (!response.ok) {
-        throw new Error("Google Meet 링크 생성에 실패했습니다.");
+        throw new Error(
+          "Google Meet 링크 생성에 실패했습니다."
+        );
       }
 
       const responseData = await response.json(); // 'data' 대신 'responseData'
@@ -331,7 +363,8 @@ function BookingPage() {
             .split(":")
             .map(Number);
           const newMinutes = minutes + 30;
-          const newHours = newMinutes >= 60 ? hours + 1 : hours;
+          const newHours =
+            newMinutes >= 60 ? hours + 1 : hours;
           const finalMinutes =
             newMinutes >= 60 ? newMinutes - 60 : newMinutes;
           return `${newHours
@@ -342,15 +375,14 @@ function BookingPage() {
         })(), // 시간, 분 추출
         shop: designer.address,
         method:
-          paymentMethod === "kakaopay" ? "KAKAOPAY" : "BANK_TRANSFER",
+          paymentMethod === "kakaopay"
+            ? "KAKAOPAY"
+            : "BANK_TRANSFER",
         price:
           type === "offline"
             ? designer.price.offline.toString()
             : designer.price.online.toString(),
       };
-
-      console.log(`reservationData : ${reservationData.method}`);
-      console.log(`reservationDatastringify : ${reservationData}`);
 
       const response = await fetch(
         "https://blaybus-glowup.com/reservation/create",
@@ -377,7 +409,10 @@ function BookingPage() {
       localStorage.setItem("reservationId", "");
       localStorage.setItem("userId", "");
       //초기화
-      localStorage.setItem("reservationId", data.reservationId);
+      localStorage.setItem(
+        "reservationId",
+        data.reservationId
+      );
       localStorage.setItem("userId", data.userId);
 
       // 2. 온라인 컨설팅인 경우 구글 미팅 생성
@@ -399,7 +434,9 @@ function BookingPage() {
       }
     } catch (error) {
       console.error("예약 생성 중 오류:", error);
-      alert(error.message || "예약 생성 중 오류가 발생했습니다.");
+      alert(
+        error.message || "예약 생성 중 오류가 발생했습니다."
+      );
     } finally {
       setIsLoading(false); // 요청 완료 후 로딩 상태 해제
     }
@@ -413,9 +450,14 @@ function BookingPage() {
       );
       const data = await response.json();
       // 예약 내역 페이지로 이동하면서 데이터를 전달
-      navigate("/reservations", { state: { reservations: data } });
+      navigate("/reservations", {
+        state: { reservations: data },
+      });
     } catch (error) {
-      console.error("예약 내역을 가져오는 데 실패했습니다.", error);
+      console.error(
+        "예약 내역을 가져오는 데 실패했습니다.",
+        error
+      );
     }
   };
 
@@ -453,12 +495,16 @@ function BookingPage() {
             <div className="info-item">
               <span>컨설팅 유형</span>
               <span>
-                {type === "offline" ? "대면 컨설팅" : "화상 컨설팅"}
+                {type === "offline"
+                  ? "대면 컨설팅"
+                  : "화상 컨설팅"}
               </span>
             </div>
             <div className="info-item">
               <span>날짜</span>
-              <span>{selectedDateState.toLocaleDateString()}</span>
+              <span>
+                {selectedDateState.toLocaleDateString()}
+              </span>
             </div>
             <div className="info-item">
               <span>시간</span>
@@ -496,18 +542,26 @@ function BookingPage() {
                 <div className="payment-methods">
                   <button
                     className={`payment-button ${
-                      paymentMethod === "account" ? "selected" : ""
+                      paymentMethod === "account"
+                        ? "selected"
+                        : ""
                     }`}
-                    onClick={() => handlePaymentSelect("account")}
+                    onClick={() =>
+                      handlePaymentSelect("account")
+                    }
                   >
                     <div className="radio-circle" />
                     <span>계좌이체</span>
                   </button>
                   <button
                     className={`payment-button ${
-                      paymentMethod === "kakaopay" ? "selected" : ""
+                      paymentMethod === "kakaopay"
+                        ? "selected"
+                        : ""
                     }`}
-                    onClick={() => handlePaymentSelect("kakaopay")}
+                    onClick={() =>
+                      handlePaymentSelect("kakaopay")
+                    }
                   >
                     <div className="radio-circle" />
                     <span>카카오페이</span>
@@ -526,7 +580,9 @@ function BookingPage() {
                   </button>
                   <button
                     className="cancel-button"
-                    onClick={() => setShowPaymentModal(false)}
+                    onClick={() =>
+                      setShowPaymentModal(false)
+                    }
                   >
                     돌아가기
                   </button>
@@ -541,21 +597,29 @@ function BookingPage() {
           <Header text="결제" />
           {paymentMethod === "account" ? (
             <>
-              <h2 className="payment-waiting-title">입금 대기 중</h2>
+              <h2 className="payment-waiting-title">
+                입금 대기 중
+              </h2>
               <div className="account-transfer-info">
                 <div className="account-number-wrapper">
                   <span>{COMPANY_ACCOUNT.account}</span>
                   <button
                     className="copy-button"
                     onClick={() => {
-                      const accountNumber = COMPANY_ACCOUNT.account;
+                      const accountNumber =
+                        COMPANY_ACCOUNT.account;
                       navigator.clipboard
                         .writeText(accountNumber)
                         .then(() => {
-                          alert("계좌번호가 복사되었습니다.");
+                          alert(
+                            "계좌번호가 복사되었습니다."
+                          );
                         })
                         .catch((err) => {
-                          console.error("계좌번호 복사 실패:", err);
+                          console.error(
+                            "계좌번호 복사 실패:",
+                            err
+                          );
                         });
                     }}
                     aria-label="계좌번호 복사"
@@ -577,12 +641,16 @@ function BookingPage() {
             <div className="info-item">
               <span>컨설팅 유형</span>
               <span>
-                {type === "offline" ? "대면 컨설팅" : "화상 컨설팅"}
+                {type === "offline"
+                  ? "대면 컨설팅"
+                  : "화상 컨설팅"}
               </span>
             </div>
             <div className="info-item">
               <span>날짜</span>
-              <span>{selectedDateState.toLocaleDateString()}</span>
+              <span>
+                {selectedDateState.toLocaleDateString()}
+              </span>
             </div>
             <div className="info-item">
               <span>시간</span>

@@ -23,7 +23,6 @@ function DesignerDetail() {
     afternoon: [],
   });
 
-  console.log("기능 완성");
   // 오늘 날짜와 3개월 후 날짜 설정
   const minDate = new Date();
   const maxDate = new Date();
@@ -37,17 +36,15 @@ function DesignerDetail() {
     };
     const now = new Date();
     const selected = new Date(selectedDate);
-    const isToday = selected.toDateString() === now.toDateString();
+    const isToday =
+      selected.toDateString() === now.toDateString();
 
     selected.setDate(selected.getDate() + 1);
 
     // selectedDate를 YYYY-MM-DD 형식으로 변환
-    const formattedDate = selected.toISOString().split("T")[0];
-
-    // 콘솔 확인
-    console.log(`selectedDate : ${selectedDate}`);
-    console.log(`selected (1일 더한 후) : ${selected}`);
-    console.log(`formattedDate : ${formattedDate}`);
+    const formattedDate = selected
+      .toISOString()
+      .split("T")[0];
 
     try {
       const response = await fetch(
@@ -55,8 +52,6 @@ function DesignerDetail() {
       );
       const data = await response.json();
       const availableTimes = data.availableTimes;
-
-      console.log(data);
 
       if (!availableTimes) {
         console.log("No available times returned from API");
@@ -71,8 +66,12 @@ function DesignerDetail() {
 
           const timeString = `${hour
             .toString()
-            .padStart(2, "0")}:${minute.toString().padStart(2, "0")}`;
-          const timeSlot = new Date(selected.setHours(hour, minute));
+            .padStart(2, "0")}:${minute
+            .toString()
+            .padStart(2, "0")}`;
+          const timeSlot = new Date(
+            selected.setHours(hour, minute)
+          );
 
           // 현재 시간이 지난 시간대는 제외
           if (isToday && timeSlot <= now) continue;
@@ -102,7 +101,9 @@ function DesignerDetail() {
           "https://blaybus-glowup.com/designers"
         );
         const data = await response.json();
-        const designerData = data.find((d) => d.id === designerId);
+        const designerData = data.find(
+          (d) => d.id === designerId
+        );
         setDesigner(designerData);
       } catch (err) {
         console.log("Error fetching designer: ", err);
@@ -157,7 +158,10 @@ function DesignerDetail() {
             className="designer-detail-image"
           />
           <div className="designer-info">
-            <p className="specialty" data-field={designer.field}>
+            <p
+              className="specialty"
+              data-field={designer.field}
+            >
               {designer.field}
             </p>
             <h1>{designer.name}</h1>
@@ -170,7 +174,9 @@ function DesignerDetail() {
         </div>
         <div className="designer-introduction">
           <p>{designer.introduction}</p>
-          <p className="description">{designer.description}</p>
+          <p className="description">
+            {designer.description}
+          </p>
         </div>
 
         <div className="consultation-info">
@@ -193,7 +199,9 @@ function DesignerDetail() {
             )}
           </div>
           {type === "offline" && (
-            <p className="location">위치: {designer.address}</p>
+            <p className="location">
+              위치: {designer.address}
+            </p>
           )}
         </div>
 
@@ -204,7 +212,9 @@ function DesignerDetail() {
               <div key={index} className="portfolio-item">
                 <video
                   src={video}
-                  alt={`${designer.name} 포트폴리오 ${index + 1}`}
+                  alt={`${designer.name} 포트폴리오 ${
+                    index + 1
+                  }`}
                   className="portfolio-video"
                   controls
                 />
@@ -213,13 +223,18 @@ function DesignerDetail() {
           </div>
         </div>
       </div>
-      <button onClick={handleBookingClick} className="booking-button">
+      <button
+        onClick={handleBookingClick}
+        className="booking-button"
+      >
         예약하기
       </button>
       {/* 모달 부분 */}
       {showCalendar && (
         <div
-          className={`calendar-modal ${isClosing ? "closing" : ""}`}
+          className={`calendar-modal ${
+            isClosing ? "closing" : ""
+          }`}
         >
           <div className="modal-content">
             <h3>컨설팅 희망 날짜를 선택해 주세요</h3>
@@ -242,9 +257,13 @@ function DesignerDetail() {
                     {availableTimes.morning.map((time) => (
                       <button
                         key={time}
-                        onClick={() => handleTimeSelect(time)}
+                        onClick={() =>
+                          handleTimeSelect(time)
+                        }
                         className={`time-button ${
-                          selectedTime === time ? "selected" : ""
+                          selectedTime === time
+                            ? "selected"
+                            : ""
                         }`}
                       >
                         {time}
@@ -258,9 +277,13 @@ function DesignerDetail() {
                     {availableTimes.afternoon.map((time) => (
                       <button
                         key={time}
-                        onClick={() => handleTimeSelect(time)}
+                        onClick={() =>
+                          handleTimeSelect(time)
+                        }
                         className={`time-button ${
-                          selectedTime === time ? "selected" : ""
+                          selectedTime === time
+                            ? "selected"
+                            : ""
                         }`}
                       >
                         {time}
@@ -278,7 +301,8 @@ function DesignerDetail() {
                   예약 진행하기
                   {selectedDate && selectedTime && (
                     <span className="selected-datetime">
-                      {formatDate(selectedDate)} {selectedTime}
+                      {formatDate(selectedDate)}{" "}
+                      {selectedTime}
                     </span>
                   )}
                 </button>

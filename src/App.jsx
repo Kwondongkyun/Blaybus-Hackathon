@@ -12,28 +12,35 @@ import DesignerDetail from "./pages/DesignerDetail";
 import MyPage from "./pages/MyPage";
 import Kakaopayment from "./pages/Kakaopayment";
 import "./App.css";
-//주석
-console.log("의미없음");
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<MainPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/main" element={<MainPage />} />
-        <Route path="/consulting/:type" element={<DesignerList />} />
+        <Route
+          path="/consulting/:type"
+          element={<DesignerList />}
+        />
         <Route
           path="/booking/:type/:designerId"
           element={<BookingPage />}
         />
-        <Route path="/reservations" element={<ReservationList />} />
+        <Route
+          path="/reservations"
+          element={<ReservationList />}
+        />
         <Route
           path="/designer/:type/:designerId"
           element={<DesignerDetail />}
         />
         <Route path="/mypage" element={<MyPage />} />
-        <Route path="/Kakaopayment" element={<Kakaopayment />} />
+        <Route
+          path="/Kakaopayment"
+          element={<Kakaopayment />}
+        />
       </Routes>
     </Router>
   );
