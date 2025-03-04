@@ -3,8 +3,8 @@ import googleImg from "../assets/google-logo.svg";
 
 function GoogleLogin() {
   const handleLogin = () => {
-    window.location.href =
-      "https://blaybus-glowup.com/oauth2/authorization/google?redirect_uri=https://uhyeon.blaybus-glowup.com/main&mode=login";
+    // window.location.href =
+    //   "https://blaybus-glowup.com/oauth2/authorization/google?redirect_uri=https://uhyeon.blaybus-glowup.com/main&mode=login";
   };
 
   //const googleimg = './../assets/google-logo.png';
@@ -21,4 +21,4 @@ function GoogleLogin() {
   );
 }
 
-export default GoogleLogin; 
+export default GoogleLogin;
