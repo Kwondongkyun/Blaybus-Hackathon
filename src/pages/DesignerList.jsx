@@ -25,20 +25,72 @@ function DesignerList() {
     maxPrice: 100000,
   });
 
+  // useEffect(() => {
+  //   const fetchDesigners = async () => {
+  //     try {
+  //       const response = await fetch(
+  //         "https://blaybus-glowup.com/designers"
+  //       );
+  //       const data = await response.json();
+  //       setDesigners(data);
+  //       setFilteredDesigners(null);
+  //     } catch (err) {
+  //       console.log("Error fetching designers: ", err);
+  //     }
+  //   };
+  //   fetchDesigners();
+  // }, []);
   useEffect(() => {
-    const fetchDesigners = async () => {
-      try {
-        const response = await fetch(
-          "https://blaybus-glowup.com/designers"
-        );
-        const data = await response.json();
-        setDesigners(data);
-        setFilteredDesigners(null);
-      } catch (err) {
-        console.log("Error fetching designers: ", err);
-      }
-    };
-    fetchDesigners();
+    // const fetchDesigners = async () => {
+    //   try {
+    //     const response = await fetch(
+    //       "https://blaybus-glowup.com/designers"
+    //     );
+    //     const data = await response.json();
+    //     setDesigners(data);
+    //     setFilteredDesigners(null);
+    //   } catch (err) {
+    //     console.log("Error fetching designers: ", err);
+    //   }
+    // };
+    // fetchDesigners();
+
+    // 임시 디자이너 데이터
+    const tempDesigners = [
+      {
+        id: 1,
+        name: "디자이너 A",
+        profile: echo_designer,
+        region: "서울 강남구",
+        field: "헤어",
+        introduction: "경력 10년의 헤어 디자이너",
+        price: { offline: 50000, online: 30000 },
+        portfolios: [echo_portfolio, echo_portfolio2],
+      },
+      {
+        id: 2,
+        name: "디자이너 B",
+        profile: echo_designer,
+        region: "서울 서초구",
+        field: "메이크업",
+        introduction: "경력 5년의 메이크업 아티스트",
+        price: { offline: 70000, online: 40000 },
+        portfolios: [echo_portfolio, echo_portfolio2],
+      },
+      {
+        id: 3,
+        name: "디자이너 C",
+        profile: echo_designer,
+        region: "서울 강북구",
+        field: "네일",
+        introduction: "경력 3년의 네일 아티스트",
+        price: { offline: 30000, online: 20000 },
+        portfolios: [echo_portfolio, echo_portfolio2],
+      },
+    ];
+
+    setDesigners(tempDesigners);
+    setFilteredDesigners(null);
   }, []);
 
   // 필터 적용 함수
