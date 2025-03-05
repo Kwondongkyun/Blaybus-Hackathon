@@ -6,12 +6,18 @@ import location from "./../assets/location.svg";
 import "../styles/DesignerList.css";
 import FilterModal from "../pages/FilterModal";
 
+// 샘플 이미지
+import echo_designer from "../assets/echo_designer.svg";
+import echo_portfolio from "../assets/echo_portfolio.svg";
+import echo_portfolio2 from "../assets/echo_portfolio2.svg";
+
 function DesignerList() {
   const navigate = useNavigate();
   const { type } = useParams();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [designers, setDesigners] = useState([]);
-  const [filteredDesigners, setFilteredDesigners] = useState(null);
+  const [filteredDesigners, setFilteredDesigners] =
+    useState(null);
   const [filter, setFilter] = useState({
     type: "대면",
     region: "서울 전체",
@@ -37,27 +43,28 @@ function DesignerList() {
 
   // 필터 적용 함수
   const handleFilterApply = (newFilter) => {
-    console.log('Applying filter:', newFilter);
+    console.log("Applying filter:", newFilter);
 
     const filtered = designers.filter((designer) => {
       // 지역 필터링 - region 사용
-      const regionMatch = 
-        newFilter.region === "서울 전체" || 
+      const regionMatch =
+        newFilter.region === "서울 전체" ||
         designer.region.includes(newFilter.region);
 
       // 가격 필터링
-      const price = type === "offline" ? 
-        designer.price.offline : 
-        designer.price.online;
-      
-      const priceMatch = 
-        price >= newFilter.minPrice && 
+      const price =
+        type === "offline"
+          ? designer.price.offline
+          : designer.price.online;
+
+      const priceMatch =
+        price >= newFilter.minPrice &&
         price <= newFilter.maxPrice;
 
       return regionMatch && priceMatch;
     });
 
-    console.log('Filtered results:', filtered);
+    console.log("Filtered results:", filtered);
     setFilteredDesigners(filtered);
     setFilter(newFilter);
     setIsFilterOpen(false);
@@ -74,9 +81,12 @@ function DesignerList() {
 
   return (
     <div className="designer-list-container">
-      <Header text={headerText} onApplyFilter={handleFilterApply} />
-      <FilterModal 
-        isOpen={isFilterOpen} 
+      <Header
+        text={headerText}
+        onApplyFilter={handleFilterApply}
+      />
+      <FilterModal
+        isOpen={isFilterOpen}
         onClose={() => setIsFilterOpen(false)}
         onApply={handleFilterApply}
         initialFilter={filter}
@@ -87,7 +97,9 @@ function DesignerList() {
             <div
               key={designer.id}
               className="designer-card"
-              onClick={() => handleDesignerSelect(designer.id)}
+              onClick={() =>
+                handleDesignerSelect(designer.id)
+              }
             >
               <div className="designerlist-info">
                 <img
@@ -98,9 +110,15 @@ function DesignerList() {
                 <div className="designerlist-text">
                   <h2>{designer.name}</h2>
                   <p className="designerlist-region">
-                    <img src={location} alt="location icon" />
+                    <img
+                      src={location}
+                      alt="location icon"
+                    />
                     {designer.region}
-                    <span className="designerlist-field" data-field={designer.field}>
+                    <span
+                      className="designerlist-field"
+                      data-field={designer.field}
+                    >
                       {designer.field}
                     </span>
                   </p>
@@ -115,7 +133,9 @@ function DesignerList() {
                   <img
                     key={index}
                     src={image}
-                    alt={`${designer.name} 포트폴리오 ${index + 1}`}
+                    alt={`${designer.name} 포트폴리오 ${
+                      index + 1
+                    }`}
                     className="portfolio-image"
                   />
                 ))}
@@ -127,7 +147,9 @@ function DesignerList() {
             <div
               key={designer.id}
               className="designer-card"
-              onClick={() => handleDesignerSelect(designer.id)}
+              onClick={() =>
+                handleDesignerSelect(designer.id)
+              }
             >
               <div className="designerlist-info">
                 <img
@@ -138,9 +160,15 @@ function DesignerList() {
                 <div className="designerlist-text">
                   <h2>{designer.name}</h2>
                   <p className="designerlist-region">
-                    <img src={location} alt="location icon" />
+                    <img
+                      src={location}
+                      alt="location icon"
+                    />
                     {designer.region}
-                    <span className="designerlist-field" data-field={designer.field}>
+                    <span
+                      className="designerlist-field"
+                      data-field={designer.field}
+                    >
                       {designer.field}
                     </span>
                   </p>
@@ -155,7 +183,9 @@ function DesignerList() {
                   <img
                     key={index}
                     src={image}
-                    alt={`${designer.name} 포트폴리오 ${index + 1}`}
+                    alt={`${designer.name} 포트폴리오 ${
+                      index + 1
+                    }`}
                     className="portfolio-image"
                   />
                 ))}
@@ -163,7 +193,9 @@ function DesignerList() {
             </div>
           ))
         ) : (
-          <div className="no-results">검색 결과가 없습니다.</div>
+          <div className="no-results">
+            검색 결과가 없습니다.
+          </div>
         )}
       </div>
       <Footer />
