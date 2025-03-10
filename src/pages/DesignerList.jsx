@@ -9,8 +9,10 @@ import FilterModal from "../pages/FilterModal";
 
 // 샘플 이미지
 import echo_designer from "../assets/echo_designer.svg";
-import echo_portfolio from "../assets/echo_portfolio.svg";
-import echo_portfolio2 from "../assets/echo_portfolio2.svg";
+import echoportfolio1 from "../assets/echoportfolio1.svg";
+import echoportfolio2 from "../assets/echoportfolio2.svg";
+import echoportfolio3 from "../assets/echoportfolio3.svg";
+import echoportfolio4 from "../assets/echoportfolio4.svg";
 
 function DesignerList() {
   const navigate = useNavigate();
@@ -41,6 +43,7 @@ function DesignerList() {
   //   };
   //   fetchDesigners();
   // }, []);
+
   useEffect(() => {
     // const fetchDesigners = async () => {
     //   try {
@@ -66,7 +69,12 @@ function DesignerList() {
         field: "헤어",
         introduction: "경력 10년의 헤어 디자이너",
         price: { offline: 50000, online: 30000 },
-        portfolios: [echo_portfolio, echo_portfolio2],
+        portfolios: [
+          echoportfolio1,
+          echoportfolio2,
+          echoportfolio3,
+          echoportfolio4,
+        ],
       },
       {
         id: 2,
@@ -76,7 +84,12 @@ function DesignerList() {
         field: "메이크업",
         introduction: "경력 5년의 메이크업 아티스트",
         price: { offline: 70000, online: 40000 },
-        portfolios: [echo_portfolio, echo_portfolio2],
+        portfolios: [
+          echoportfolio1,
+          echoportfolio2,
+          echoportfolio3,
+          echoportfolio4,
+        ],
       },
       {
         id: 3,
@@ -86,7 +99,12 @@ function DesignerList() {
         field: "네일",
         introduction: "경력 3년의 네일 아티스트",
         price: { offline: 30000, online: 20000 },
-        portfolios: [echo_portfolio, echo_portfolio2],
+        portfolios: [
+          echoportfolio1,
+          echoportfolio2,
+          echoportfolio3,
+          echoportfolio4,
+        ],
       },
       {
         id: 4,
@@ -96,7 +114,12 @@ function DesignerList() {
         field: "네일",
         introduction: "경력 3년의 네일 아티스트",
         price: { offline: 50000, online: 40000 },
-        portfolios: [echo_portfolio, echo_portfolio2],
+        portfolios: [
+          echoportfolio1,
+          echoportfolio2,
+          echoportfolio3,
+          echoportfolio4,
+        ],
       },
     ];
 
