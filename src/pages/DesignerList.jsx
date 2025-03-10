@@ -74,6 +74,10 @@ function DesignerList() {
           echoportfolio2,
           echoportfolio3,
           echoportfolio4,
+          echoportfolio1,
+          echoportfolio2,
+          echoportfolio3,
+          echoportfolio4,
         ],
       },
       {
@@ -85,6 +89,10 @@ function DesignerList() {
         introduction: "경력 5년의 메이크업 아티스트",
         price: { offline: 70000, online: 40000 },
         portfolios: [
+          echoportfolio1,
+          echoportfolio2,
+          echoportfolio3,
+          echoportfolio4,
           echoportfolio1,
           echoportfolio2,
           echoportfolio3,
@@ -104,6 +112,10 @@ function DesignerList() {
           echoportfolio2,
           echoportfolio3,
           echoportfolio4,
+          echoportfolio1,
+          echoportfolio2,
+          echoportfolio3,
+          echoportfolio4,
         ],
       },
       {
@@ -115,6 +127,10 @@ function DesignerList() {
         introduction: "경력 3년의 네일 아티스트",
         price: { offline: 50000, online: 40000 },
         portfolios: [
+          echoportfolio1,
+          echoportfolio2,
+          echoportfolio3,
+          echoportfolio4,
           echoportfolio1,
           echoportfolio2,
           echoportfolio3,

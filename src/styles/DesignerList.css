@@ -146,9 +146,15 @@
 .designerlist-portfolio {
   display: flex;
   justify-content: space-evenly;
+  overflow-x: auto;
   gap: 11px;
   width: 333px;
   height: 94px;
+}
+
+.designerlist-portfolio::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 4px;
 }
 
 .designerlist-portfolio .portfolio-image {
