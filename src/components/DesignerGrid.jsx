@@ -1,3 +1,4 @@
+// 디자이너 카드 컴포넌트
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import location from "./../assets/location.svg";

@@ -88,6 +88,16 @@ function DesignerList() {
         price: { offline: 30000, online: 20000 },
         portfolios: [echo_portfolio, echo_portfolio2],
       },
+      {
+        id: 4,
+        name: "디자이너 D",
+        profile: echo_designer,
+        region: "서울 종로구",
+        field: "네일",
+        introduction: "경력 3년의 네일 아티스트",
+        price: { offline: 50000, online: 40000 },
+        portfolios: [echo_portfolio, echo_portfolio2],
+      },
     ];
 
     setDesigners(tempDesigners);
